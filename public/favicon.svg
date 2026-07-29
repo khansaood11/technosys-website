@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="cyanStem" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00F0FF"/>
+      <stop offset="100%" stop-color="#00A3FF"/>
+    </linearGradient>
+    <linearGradient id="purpleBlock" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7000FF"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <!-- Outer Glow Background Box -->
+  <rect width="100" height="100" rx="22" fill="#070A15"/>
+  <rect width="100" height="100" rx="22" fill="none" stroke="rgba(0, 240, 255, 0.3)" stroke-width="2"/>
+
+  <!-- Main 'T' Shape -->
+  <!-- Top Horizontal Bar -->
+  <path d="M 18 22 L 58 22 L 54 36 L 18 36 Z" fill="url(#cyanStem)" filter="url(#glow)"/>
+  <!-- Vertical Stem slanted -->
+  <path d="M 32 36 L 46 36 L 28 82 L 14 82 Z" fill="url(#cyanStem)"/>
+
+  <!-- Top Right Accent Block -->
+  <path d="M 64 22 L 82 22 L 78 48 L 60 48 Z" fill="url(#purpleBlock)"/>
+  
+  <!-- Bottom Right Accent Block -->
+  <path d="M 56 56 L 74 56 L 70 82 L 52 82 Z" fill="url(#purpleBlock)"/>
+
+  <!-- Micro 'TECHNOSYS' text on top bar -->
+  <text x="38" y="31" font-family="'Outfit', sans-serif" font-weight="900" font-size="7" fill="#060913" text-anchor="middle" letter-spacing="0.5">TECHNOSYS</text>
+</svg>
