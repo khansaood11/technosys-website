@@ -1,0 +1,42 @@
+{
+  "name": "Technosys Teleservices - High Speed Fiber & Enterprise ISP",
+  "short_name": "Technosys",
+  "description": "Sparkline Technosys Pvt Ltd (STPL) Ankleshwar premier high-speed fiber broadband, 1:1 dedicated leased line, and subscriber portal app.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#030712",
+  "theme_color": "#00F0FF",
+  "lang": "en-US",
+  "categories": ["business", "utilities", "telecom"],
+  "icons": [
+    {
+      "src": "https://technosysonline.com/wp-content/uploads/2024/08/cropped-logo-footer-00-png-scaled-192x192.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "https://technosysonline.com/wp-content/uploads/2024/08/cropped-logo-footer-00-png-scaled-192x192.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Subscriber Portal",
+      "short_name": "Portal",
+      "description": "Access subscriber login portal",
+      "url": "/#subscriber",
+      "icons": [{ "src": "https://technosysonline.com/wp-content/uploads/2024/08/cropped-logo-footer-00-png-scaled-32x32.webp", "sizes": "32x32" }]
+    },
+    {
+      "name": "Speed Test",
+      "short_name": "Speed Test",
+      "description": "Run real-time speed test",
+      "url": "/#speedtest",
+      "icons": [{ "src": "https://technosysonline.com/wp-content/uploads/2024/08/cropped-logo-footer-00-png-scaled-32x32.webp", "sizes": "32x32" }]
+    }
+  ]
+}

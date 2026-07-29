@@ -11,6 +11,7 @@ import Testimonials from './components/Testimonials';
 import PolicyModal from './components/PolicyModal';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
+import PWAInstallBanner from './components/PWAInstallBanner';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('home'); // home, services, plans, coverage, portal, about, contact
@@ -24,7 +25,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#060913] text-slate-100 selection:bg-cyan-500 selection:text-black flex flex-col justify-between">
+    <div className="min-h-screen bg-[#060913] text-slate-100 selection:bg-cyan-500 selection:text-black flex flex-col justify-between overflow-x-hidden">
       
       {/* Navbar with Tab Controller */}
       <Navbar
@@ -137,6 +138,9 @@ export default function App() {
         initialPolicy={activePolicyDoc}
         onClose={() => setPolicyModalOpen(false)}
       />
+
+      {/* PWA Install Notification Prompt */}
+      <PWAInstallBanner />
     </div>
   );
 }
