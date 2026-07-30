@@ -57,7 +57,7 @@ export default function Hero({ onOpenSpeedTest, onOpenContact, onExploreServices
         </svg>
       </div>
 
-      {/* Reduced Glow Orbs (Tuned down 20% for readability) */}
+      {/* Reduced Glow Orbs */}
       <div className="glow-orb glow-cyan w-[400px] h-[400px] -top-20 -left-20 opacity-15"></div>
       <div className="glow-orb glow-purple w-[350px] h-[350px] bottom-0 -right-20 opacity-15"></div>
 
@@ -86,11 +86,14 @@ export default function Hero({ onOpenSpeedTest, onOpenContact, onExploreServices
               <span className="text-cyan-400 font-semibold">99.9% SLA Uptime</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-zinc-50 tracking-tight leading-[1.08] font-heading min-h-[140px] sm:min-h-[160px]">
-              Dedicated Connectivity. <br />
-              <span className="gradient-text font-mono tracking-normal text-cyan-400 border-r-2 border-cyan-400 pr-1 animate-pulse">
-                {displayText}
-              </span>
+            {/* Heading with Fixed Height Typewriter Single Line (Zero Page Shifting) */}
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-zinc-50 tracking-tight font-heading space-y-1">
+              <div className="text-white block">Dedicated Connectivity.</div>
+              <div className="h-[44px] sm:h-[56px] lg:h-[64px] flex items-center overflow-hidden">
+                <span className="gradient-text font-mono tracking-normal text-cyan-400 border-r-2 border-cyan-400 pr-1 animate-pulse text-2xl sm:text-3xl lg:text-4xl whitespace-nowrap">
+                  {displayText}
+                </span>
+              </div>
             </h1>
 
             <p className="text-base sm:text-lg text-zinc-300 max-w-xl font-normal leading-[1.75]">
