@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Phone, Gauge, Menu, X } from 'lucide-react';
 import TechnosysLogo from './TechnosysLogo';
+import ThemeSwitcher from './ThemeSwitcher';
 
-export default function Navbar({ activeTab, setActiveTab, onOpenSpeedTest, onOpenPolicy }) {
+export default function Navbar({ activeTab, setActiveTab, onOpenSpeedTest, onOpenPolicy, currentTheme, setTheme }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -68,7 +69,7 @@ export default function Navbar({ activeTab, setActiveTab, onOpenSpeedTest, onOpe
               onClick={() => setActiveTab(item.id)}
               className={`px-3.5 py-2 rounded-lg text-xs font-bold transition-all ${
                 activeTab === item.id
-                  ? 'bg-cyan-500 text-black shadow-md shadow-cyan-500/20'
+                  ? 'bg-cyan-500 text-black shadow-md shadow-cyan-500/20 scale-105'
                   : 'text-slate-300 hover:text-cyan-400 hover:bg-slate-800/60'
               }`}
             >
@@ -77,24 +78,31 @@ export default function Navbar({ activeTab, setActiveTab, onOpenSpeedTest, onOpe
           ))}
         </nav>
 
-        {/* Header Quick Buttons */}
+        {/* Header Controls: Theme Switcher + Speed Test */}
         <div className="hidden md:flex items-center gap-3">
+          <ThemeSwitcher currentTheme={currentTheme} setTheme={setTheme} />
+
           <button
             onClick={onOpenSpeedTest}
-            className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/20 text-xs font-semibold tracking-wide transition-all"
+            className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/20 text-xs font-semibold tracking-wide transition-all hover:scale-105"
           >
             <Gauge className="w-4 h-4 text-cyan-400 animate-pulse" />
             <span>Speed Test</span>
           </button>
         </div>
 
-        {/* Mobile Hamburger Toggle */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 rounded-lg bg-slate-800 text-slate-300 hover:text-white"
-        >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        {/* Mobile Controls */}
+        <div className="flex md:hidden items-center gap-2">
+          <ThemeSwitcher currentTheme={currentTheme} setTheme={setTheme} />
+          
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 rounded-lg bg-slate-800 text-slate-300 hover:text-white"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+
       </div>
 
       {/* Mobile Drawer */}
