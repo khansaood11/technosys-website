@@ -35,7 +35,7 @@ export default function Testimonials() {
 
   return (
     <section className="relative section-padding bg-[#050812]">
-      <div className="container relative z-10 space-y-16">
+      <div className="container relative z-10 space-y-12 sm:space-y-16">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
@@ -46,40 +46,42 @@ export default function Testimonials() {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
             Trusted by Enterprises Across <span className="gradient-text">Gujarat</span>
           </h2>
-          <p className="text-slate-400 text-base">
+          <p className="text-slate-400 text-sm sm:text-base">
             See what plant managers, corporate IT directors, and home subscribers say about Technosys connectivity.
           </p>
         </div>
 
-        {/* Reviews Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Reviews Mobile Horizontal Snap-Scroll Stack Carousel & Desktop Grid */}
+        <div className="flex sm:grid sm:grid-cols-2 gap-6 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 sm:mx-0 sm:px-0">
           {reviews.map((rev, idx) => (
-            <div key={idx} className="glass-panel glass-panel-interactive p-8 space-y-6 border-slate-800 relative">
-              <Quote className="absolute top-6 right-6 w-10 h-10 text-cyan-500/10" />
+            <div key={idx} className="glass-panel glass-panel-interactive p-6 sm:p-8 space-y-6 border-slate-800 relative shrink-0 w-[85vw] sm:w-auto snap-center flex flex-col justify-between">
+              <Quote className="absolute top-5 right-5 w-8 h-8 text-cyan-500/10" />
 
-              {/* Stars */}
-              <div className="flex items-center gap-1">
-                {[...Array(rev.rating)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                ))}
+              <div className="space-y-4">
+                {/* Stars */}
+                <div className="flex items-center gap-1">
+                  {[...Array(rev.rating)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                  ))}
+                </div>
+
+                <p className="text-slate-200 text-sm sm:text-base font-medium leading-relaxed italic">
+                  "{rev.comment}"
+                </p>
               </div>
 
-              <p className="text-slate-200 text-base font-medium leading-relaxed italic">
-                "{rev.comment}"
-              </p>
-
               <div className="flex items-center gap-3 pt-4 border-t border-slate-800/80">
-                <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-cyan-500 to-indigo-600 p-[2px]">
-                  <div className="w-full h-full bg-[#090D1C] rounded-full flex items-center justify-center font-bold text-white text-sm">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-cyan-500 to-indigo-600 p-[2px] shrink-0">
+                  <div className="w-full h-full bg-[#090D1C] rounded-full flex items-center justify-center font-bold text-white text-xs">
                     {rev.name.charAt(0)}
                   </div>
                 </div>
-                <div>
-                  <div className="font-bold text-white text-sm flex items-center gap-2">
+                <div className="min-w-0">
+                  <div className="font-bold text-white text-xs sm:text-sm flex items-center gap-1.5 truncate">
                     <span>{rev.name}</span>
-                    <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
                   </div>
-                  <div className="text-xs text-slate-400">{rev.role} • {rev.location}</div>
+                  <div className="text-[11px] sm:text-xs text-slate-400 truncate">{rev.role} • {rev.location}</div>
                 </div>
               </div>
             </div>
