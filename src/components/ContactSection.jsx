@@ -1,17 +1,28 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle2, Building, MessageSquare, ShieldCheck, ExternalLink, Clock, Sparkles } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle2, Building, ShieldCheck, ExternalLink, Clock, Sparkles, ArrowLeft, Zap, Radio } from 'lucide-react';
 
-export default function ContactSection() {
+export default function ContactSection({ onBackToHome }) {
   const [formData, setFormData] = useState({
     name: '',
     company: '',
     phone: '',
     email: '',
     service: 'Internet Leased Line (1:1 ILL)',
+    zone: 'Ankleshwar GIDC Phase 1',
     address: '',
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
+
+  const GIDCZones = [
+    'Ankleshwar GIDC Phase 1',
+    'Ankleshwar GIDC Phase 2',
+    'Ankleshwar GIDC Phase 3',
+    'Ankleshwar GIDC Phase 4',
+    'Panoli Industrial Estate',
+    'Jhagadia Industrial Hub',
+    'Bharuch Commercial District'
+  ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,43 +30,62 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative section-padding bg-[#050814] min-h-screen">
+    <section id="contact" className="relative section-padding bg-[#040713] min-h-screen pt-28 sm:pt-36">
       
-      {/* Standalone Canvas Background Glow */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="glow-orb glow-cyan w-[600px] h-[600px] top-10 left-10 opacity-10"></div>
-        <div className="glow-orb glow-purple w-[500px] h-[500px] bottom-10 right-10 opacity-10"></div>
-      </div>
+      {/* Standalone Canvas Grid & Aurora Glow */}
+      <div className="aurora-bg"></div>
+      <div className="tech-grid-bg"></div>
+      
+      <div className="glow-orb glow-cyan w-[600px] h-[600px] top-10 left-10 opacity-15 pointer-events-none"></div>
+      <div className="glow-orb glow-purple w-[500px] h-[500px] bottom-10 right-10 opacity-15 pointer-events-none"></div>
 
       <div className="container relative z-10 space-y-12 sm:space-y-16">
         
+        {/* Navigation Breadcrumb Bar */}
+        <div className="flex justify-between items-center pb-4 border-b border-zinc-800/80">
+          {onBackToHome && (
+            <button
+              onClick={onBackToHome}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-cyan-400 text-xs font-semibold text-zinc-300 hover:text-white transition-all"
+            >
+              <ArrowLeft className="w-4 h-4 text-cyan-400" />
+              <span>Back to Home View</span>
+            </button>
+          )}
+
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold">
+            <span className="live-indicator"></span>
+            <span>NOC Live Desk: Online</span>
+          </div>
+        </div>
+
         {/* Dedicated Standalone Canvas Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-semibold shadow-lg">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/90 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-semibold shadow-lg backdrop-blur-md">
             <Sparkles className="w-4 h-4 text-cyan-400" />
-            <span>Instant 1:1 Feasibility & SLA Consultation</span>
+            <span>Dedicated Telecom Consultation Canvas</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight font-heading">
-            Connect With Technosys <span className="gradient-text">NOC Team</span>
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight font-heading">
+            Connect With Technosys <span className="gradient-text">Network NOC</span>
           </h1>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Get instant optical feasibility checks, custom 1:1 dedicated leased line proposals, or direct 24/7 hotline assistance from our Ankleshwar telecom NOC engineers.
+            Get instant optical feasibility checks, custom 1:1 dedicated leased line SLA proposals, or direct 24/7 hotline assistance from our Ankleshwar telecom NOC engineers.
           </p>
         </div>
 
         {/* 2-Column Standalone Canvas Layout Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
-          {/* Left Column: Direct Official Contact Cards */}
+          {/* Left Column: Direct Official Contact & Location Cards */}
           <div className="lg:col-span-5 space-y-6">
             
             {/* Primary Hotline Call Card */}
-            <div className="glass-panel p-6 border-cyan-500/40 bg-gradient-to-r from-cyan-950/50 via-indigo-950/30 to-black space-y-3 relative overflow-hidden group">
+            <div className="glass-panel p-6 border-cyan-500/40 bg-gradient-to-r from-cyan-950/60 via-indigo-950/40 to-black space-y-3 relative overflow-hidden group">
               <div className="flex justify-between items-center">
                 <div className="text-xs font-mono font-bold uppercase tracking-wider text-cyan-400">24/7 NOC Direct Hotline</div>
-                <span className="flex items-center gap-1.5 text-[10px] font-mono text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-500/30">
+                <span className="flex items-center gap-1.5 text-[10px] font-mono text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30">
                   <span className="live-indicator"></span>
-                  <span>ONLINE</span>
+                  <span>INSTANT CALL</span>
                 </span>
               </div>
 
@@ -70,7 +100,7 @@ export default function ContactSection() {
               <div className="text-xs text-zinc-400 font-mono pt-1 flex items-center gap-2">
                 <span>Secondary: 95122 25277</span>
                 <span>•</span>
-                <span className="text-emerald-400 font-semibold">Immediate Response</span>
+                <span className="text-emerald-400 font-semibold">Immediate Dispatch</span>
               </div>
             </div>
 
@@ -96,7 +126,7 @@ export default function ContactSection() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-400 hover:text-cyan-300 transition-colors"
               >
-                <span>Open in Google Maps Navigation</span>
+                <span>Open Google Maps Navigation →</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
             </div>
@@ -118,7 +148,7 @@ export default function ContactSection() {
               </p>
             </div>
 
-            {/* Email & Business Hours Card */}
+            {/* Email & NOC Schedule Card */}
             <div className="glass-panel p-5 border-zinc-800 flex flex-col gap-2.5 text-xs font-mono">
               <a href="mailto:sales@techosysonline.com" className="flex items-center gap-2.5 text-zinc-200 hover:text-cyan-400 transition-colors">
                 <Mail className="w-4 h-4 text-cyan-400 shrink-0" />
@@ -126,7 +156,7 @@ export default function ContactSection() {
               </a>
               <div className="flex items-center gap-2.5 text-zinc-400">
                 <Clock className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Working Hours: Mon - Sat (9:00 AM - 8:00 PM)</span>
+                <span>NOC Support Desk: 24/7/365 Uninterrupted</span>
               </div>
             </div>
 
@@ -212,6 +242,19 @@ export default function ContactSection() {
                 </div>
 
                 <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-zinc-300 uppercase tracking-wider">Target Industrial / Commercial Zone</label>
+                  <select
+                    value={formData.zone}
+                    onChange={(e) => setFormData({ ...formData, zone: e.target.value })}
+                    className="w-full bg-zinc-900 border border-zinc-700 rounded-xl p-3 text-zinc-200 text-sm focus:border-cyan-400 focus:outline-none"
+                  >
+                    {GIDCZones.map((z, idx) => (
+                      <option key={idx} value={z}>{z}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="space-y-1.5">
                   <label className="text-xs font-bold text-zinc-300 uppercase tracking-wider">Required Telecom Solution</label>
                   <select
                     value={formData.service}
@@ -227,10 +270,10 @@ export default function ContactSection() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-zinc-300 uppercase tracking-wider">Installation Location / Area</label>
+                  <label className="text-xs font-bold text-zinc-300 uppercase tracking-wider">Installation Location / Plot Address</label>
                   <input
                     type="text"
-                    placeholder="e.g. Plot No, Ankleshwar GIDC Phase 1-4 / Panoli / Jhagadia"
+                    placeholder="e.g. Plot No, Ankleshwar GIDC Phase 1-4 / Street Address"
                     value={formData.address}
                     onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                     className="w-full bg-zinc-900 border border-zinc-700 rounded-xl p-3 text-zinc-200 text-sm focus:border-cyan-400 focus:outline-none"

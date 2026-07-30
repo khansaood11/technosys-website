@@ -159,8 +159,8 @@ export default function App() {
         )}
 
         {activeTab === 'contact' && (
-          <div className="pt-24 animate-fadeIn">
-            <ContactSection />
+          <div className="animate-fadeIn">
+            <ContactSection onBackToHome={() => setActiveTab('home')} />
           </div>
         )}
       </main>
