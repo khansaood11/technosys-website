@@ -57,11 +57,6 @@ export default function Hero({ onOpenSpeedTest, onOpenContact, onExploreServices
         </svg>
       </div>
 
-      {/* 4. Animated Fiber Beam Sweep Streak */}
-      <div className="fiber-beam-container">
-        <div className="fiber-beam"></div>
-      </div>
-
       {/* Reduced Glow Orbs (Tuned down 20% for readability) */}
       <div className="glow-orb glow-cyan w-[400px] h-[400px] -top-20 -left-20 opacity-15"></div>
       <div className="glow-orb glow-purple w-[350px] h-[350px] bottom-0 -right-20 opacity-15"></div>
