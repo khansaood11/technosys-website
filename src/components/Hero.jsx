@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Gauge, CheckCircle2, Radio, Activity, Zap, Server } from 'lucide-react';
+import { ArrowRight, Gauge, CheckCircle2, Radio, Activity, Zap, Server, Award, Sparkles } from 'lucide-react';
 
 export default function Hero({ onOpenSpeedTest, onOpenContact, onExploreServices }) {
   // Typewriter heading text effect
@@ -39,32 +39,52 @@ export default function Hero({ onOpenSpeedTest, onOpenContact, onExploreServices
   }, [displayText, isDeleting, textIndex]);
 
   return (
-    <section id="home" className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden border-b border-zinc-800/80">
+    <section id="home" className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden border-b border-zinc-800/60">
       {/* 1. Animated Slow Aurora Background */}
       <div className="aurora-bg"></div>
 
       {/* 2. Grid Overlay */}
       <div className="tech-grid-bg"></div>
 
-      {/* 3. Animated Fiber Beam Sweep Streak */}
+      {/* 3. Animated Optical Fiber Path in Background (●────●────●────●) */}
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-30">
+        <svg className="w-full h-full" viewBox="0 0 1200 600" fill="none">
+          <path d="M 100 200 Q 400 100 700 300 T 1200 250" stroke="rgba(0, 240, 255, 0.2)" strokeWidth="2" strokeDasharray="6 6" />
+          <circle cx="100" cy="200" r="4" fill="#00F0FF" className="animate-ping" />
+          <circle cx="400" cy="150" r="4" fill="#10B981" />
+          <circle cx="700" cy="300" r="4" fill="#00F0FF" />
+          <circle cx="1000" cy="220" r="4" fill="#8B5CF6" />
+        </svg>
+      </div>
+
+      {/* 4. Animated Fiber Beam Sweep Streak */}
       <div className="fiber-beam-container">
         <div className="fiber-beam"></div>
       </div>
 
-      <div className="glow-orb glow-cyan w-[500px] h-[500px] -top-20 -left-20 animate-pulse"></div>
-      <div className="glow-orb glow-purple w-[400px] h-[400px] bottom-0 -right-20"></div>
+      {/* Reduced Glow Orbs (Tuned down 20% for readability) */}
+      <div className="glow-orb glow-cyan w-[400px] h-[400px] -top-20 -left-20 opacity-15"></div>
+      <div className="glow-orb glow-purple w-[350px] h-[350px] bottom-0 -right-20 opacity-15"></div>
 
       <div className="container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Hero Content */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 35 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="lg:col-span-7 space-y-6 text-left"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900/90 border border-zinc-800 text-zinc-300 text-xs font-mono font-medium shadow-md">
+            {/* 16th Anniversary Flagship Celebration Ribbon */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-amber-500/10 via-cyan-500/10 to-indigo-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono font-medium shadow-lg backdrop-blur-md">
+              <Sparkles className="w-4 h-4 text-amber-400 animate-spin" style={{ animationDuration: '8s' }} />
+              <span className="font-bold text-white">Celebrating 16 Years</span>
+              <span className="text-zinc-500">•</span>
+              <span>Trusted Connectivity (2010 — 2026)</span>
+            </div>
+
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900/90 border border-zinc-800 text-zinc-300 text-xs font-mono font-medium shadow-md ml-0 sm:ml-2">
               <span className="live-indicator"></span>
               <span>Ankleshwar GIDC & Bharuch Premier ISP</span>
               <span className="text-zinc-600">|</span>
@@ -78,7 +98,7 @@ export default function Hero({ onOpenSpeedTest, onOpenContact, onExploreServices
               </span>
             </h1>
 
-            <p className="text-base sm:text-lg text-zinc-300 max-w-xl font-normal leading-relaxed">
+            <p className="text-base sm:text-lg text-zinc-300 max-w-xl font-normal leading-[1.75]">
               Sparkline Technosys Pvt. Ltd. (STPL) powers Ankleshwar & Bharuch enterprises with guaranteed <strong className="text-white font-semibold">1:1 Dedicated Internet Leased Lines</strong>, high-speed FTTH Broadband, and 24/7 Support NOC.
             </p>
 
@@ -115,22 +135,22 @@ export default function Hero({ onOpenSpeedTest, onOpenContact, onExploreServices
               </button>
             </div>
 
-            {/* Animated Statistics Counter Strip */}
+            {/* Floating Statistics Counter Strip */}
             <div className="pt-6 border-t border-zinc-800/80 grid grid-cols-3 gap-6">
-              <motion.div whileHover={{ scale: 1.04 }} className="cursor-pointer">
-                <div className="text-xl sm:text-2xl font-bold text-zinc-100 font-mono flex items-center">
-                  <span>15+</span>
-                  <span className="text-xs text-cyan-400 ml-1 font-sans">Years</span>
+              <motion.div whileHover={{ scale: 1.04, y: -2 }} className="cursor-pointer">
+                <div className="text-xl sm:text-2xl font-bold text-amber-300 font-mono flex items-center">
+                  <span>16</span>
+                  <span className="text-xs text-amber-400 ml-1 font-sans">Years</span>
                 </div>
-                <div className="text-xs text-zinc-400">ISP Telecom Expertise</div>
+                <div className="text-xs text-zinc-400">Serving Gujarat Since 2010</div>
               </motion.div>
-              <motion.div whileHover={{ scale: 1.04 }} className="cursor-pointer">
+              <motion.div whileHover={{ scale: 1.04, y: -2 }} className="cursor-pointer">
                 <div className="text-xl sm:text-2xl font-bold text-cyan-400 font-mono">
                   <span>10 Gbps</span>
                 </div>
                 <div className="text-xs text-zinc-400">Optical Core Capacity</div>
               </motion.div>
-              <motion.div whileHover={{ scale: 1.04 }} className="cursor-pointer">
+              <motion.div whileHover={{ scale: 1.04, y: -2 }} className="cursor-pointer">
                 <div className="text-xl sm:text-2xl font-bold text-emerald-400 font-mono">
                   <span>99.9%</span>
                 </div>
