@@ -6,9 +6,9 @@
 /* Stripe / Vercel Minimalist Dark Design System       */
 /* ---------------------------------------------------- */
 :root {
-  --bg-dark: #09090B;
-  --bg-card: #121215;
-  --bg-card-hover: #18181B;
+  --bg-dark: #060B18;
+  --bg-card: #0D1322;
+  --bg-card-hover: #131B2E;
   --border-color: rgba(255, 255, 255, 0.08);
   --border-hover: rgba(0, 240, 255, 0.4);
   
@@ -24,7 +24,7 @@
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Plus Jakarta Sans', sans-serif;
   
-  --glass-bg: rgba(18, 18, 21, 0.85);
+  --glass-bg: rgba(13, 19, 34, 0.85);
   --glass-border: 1px solid rgba(255, 255, 255, 0.08);
   --grid-line: rgba(255, 255, 255, 0.025);
 }
@@ -57,11 +57,31 @@ body {
   background: var(--bg-dark);
 }
 ::-webkit-scrollbar-thumb {
-  background: #27272A;
+  background: #1E293B;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary-cyan);
+}
+
+/* Aurora Slow Animated Background */
+.aurora-bg {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(14, 165, 233, 0.15), transparent 45%),
+    radial-gradient(circle at 80% 60%, rgba(29, 78, 216, 0.15), transparent 50%),
+    radial-gradient(circle at 50% 90%, rgba(139, 92, 246, 0.12), transparent 55%);
+  filter: blur(60px);
+  pointer-events: none;
+  animation: auroraMove 25s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+@keyframes auroraMove {
+  0% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.15) translate(-20px, 30px); }
+  100% { transform: scale(0.95) translate(25px, -20px); }
 }
 
 /* Vercel Grid Overlay */
@@ -93,25 +113,51 @@ body {
   background: var(--accent-purple);
 }
 
-/* Stripe / Vercel Razor-Sharp Card Panel */
+/* Animated Fiber Beam Streak */
+.fiber-beam-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.fiber-beam {
+  position: absolute;
+  top: 40%;
+  left: -100%;
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary-cyan), #FFFFFF, transparent);
+  box-shadow: 0 0 15px var(--primary-cyan);
+  animation: fiberBeamSweep 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes fiberBeamSweep {
+  0% { transform: translateX(0%); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateX(350%); opacity: 0; }
+}
+
+/* Glass Card Panel */
 .glass-panel {
   background: var(--bg-card);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: var(--glass-border);
   border-radius: 14px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-panel-interactive {
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .glass-panel-interactive:hover {
   background: var(--bg-card-hover);
   border-color: var(--border-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 240, 255, 0.12);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 10px 35px rgba(0, 240, 255, 0.15);
 }
 
 /* Typography Utilities */
@@ -163,8 +209,8 @@ h1, h2, h3, h4, .font-heading {
 .btn-primary:hover {
   background: var(--primary-cyan);
   border-color: var(--primary-cyan);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 20px rgba(0, 240, 255, 0.35);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 25px rgba(0, 240, 255, 0.4);
 }
 
 .btn-secondary {
@@ -187,7 +233,7 @@ h1, h2, h3, h4, .font-heading {
 .btn-secondary:hover {
   background: #27272A;
   border-color: rgba(255, 255, 255, 0.25);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 .btn-glow-purple {
@@ -197,15 +243,15 @@ h1, h2, h3, h4, .font-heading {
 }
 .btn-glow-purple:hover {
   opacity: 0.95;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 /* Modal overlay */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(9, 9, 11, 0.85);
-  backdrop-filter: blur(8px);
+  background: rgba(6, 11, 24, 0.88);
+  backdrop-filter: blur(12px);
   z-index: 999;
   display: flex;
   align-items: center;

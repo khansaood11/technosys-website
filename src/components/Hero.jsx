@@ -40,8 +40,17 @@ export default function Hero({ onOpenSpeedTest, onOpenContact, onExploreServices
 
   return (
     <section id="home" className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden border-b border-zinc-800/80">
-      {/* Background Gradients & Grid */}
+      {/* 1. Animated Slow Aurora Background */}
+      <div className="aurora-bg"></div>
+
+      {/* 2. Grid Overlay */}
       <div className="tech-grid-bg"></div>
+
+      {/* 3. Animated Fiber Beam Sweep Streak */}
+      <div className="fiber-beam-container">
+        <div className="fiber-beam"></div>
+      </div>
+
       <div className="glow-orb glow-cyan w-[500px] h-[500px] -top-20 -left-20 animate-pulse"></div>
       <div className="glow-orb glow-purple w-[400px] h-[400px] bottom-0 -right-20"></div>
 
@@ -50,12 +59,12 @@ export default function Hero({ onOpenSpeedTest, onOpenContact, onExploreServices
           
           {/* Left Hero Content */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             className="lg:col-span-7 space-y-6 text-left"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-mono font-medium">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900/90 border border-zinc-800 text-zinc-300 text-xs font-mono font-medium shadow-md">
               <span className="live-indicator"></span>
               <span>Ankleshwar GIDC & Bharuch Premier ISP</span>
               <span className="text-zinc-600">|</span>
@@ -69,21 +78,21 @@ export default function Hero({ onOpenSpeedTest, onOpenContact, onExploreServices
               </span>
             </h1>
 
-            <p className="text-base sm:text-lg text-zinc-400 max-w-xl font-normal leading-relaxed">
-              Sparkline Technosys Pvt. Ltd. (STPL) powers Ankleshwar & Bharuch enterprises with guaranteed <strong className="text-zinc-200 font-semibold">1:1 Dedicated Internet Leased Lines</strong>, high-speed FTTH Broadband, and 24/7 Support NOC.
+            <p className="text-base sm:text-lg text-zinc-300 max-w-xl font-normal leading-relaxed">
+              Sparkline Technosys Pvt. Ltd. (STPL) powers Ankleshwar & Bharuch enterprises with guaranteed <strong className="text-white font-semibold">1:1 Dedicated Internet Leased Lines</strong>, high-speed FTTH Broadband, and 24/7 Support NOC.
             </p>
 
             {/* Feature Tags */}
             <div className="flex flex-wrap gap-2 pt-1 text-xs text-zinc-300 font-mono">
-              <span className="px-2.5 py-1 rounded-md bg-zinc-900 border border-zinc-800 flex items-center gap-1.5 hover:border-cyan-500/40 transition-colors">
+              <span className="px-2.5 py-1 rounded-md bg-zinc-900/80 border border-zinc-800 flex items-center gap-1.5 hover:border-cyan-500/40 transition-colors">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
                 1:1 Symmetrical Bandwidth
               </span>
-              <span className="px-2.5 py-1 rounded-md bg-zinc-900 border border-zinc-800 flex items-center gap-1.5 hover:border-cyan-500/40 transition-colors">
+              <span className="px-2.5 py-1 rounded-md bg-zinc-900/80 border border-zinc-800 flex items-center gap-1.5 hover:border-cyan-500/40 transition-colors">
                 <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
                 Ankleshwar Phase 1-4 Fiber
               </span>
-              <span className="px-2.5 py-1 rounded-md bg-zinc-900 border border-zinc-800 flex items-center gap-1.5 hover:border-cyan-500/40 transition-colors">
+              <span className="px-2.5 py-1 rounded-md bg-zinc-900/80 border border-zinc-800 flex items-center gap-1.5 hover:border-cyan-500/40 transition-colors">
                 <CheckCircle2 className="w-3.5 h-3.5 text-blue-400" />
                 24/7 Dedicated Support
               </span>
@@ -100,7 +109,7 @@ export default function Hero({ onOpenSpeedTest, onOpenContact, onExploreServices
                 <span>View Plans & Services</span>
               </button>
 
-              <button onClick={onOpenSpeedTest} className="px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-cyan-500/40 text-cyan-400 text-xs font-semibold flex items-center gap-2 transition-all hover:scale-105">
+              <button onClick={onOpenSpeedTest} className="px-4 py-3 rounded-xl bg-zinc-900/90 border border-zinc-800 hover:border-cyan-500/40 text-cyan-400 text-xs font-semibold flex items-center gap-2 transition-all hover:scale-105">
                 <Gauge className="w-4 h-4 text-cyan-400 animate-pulse" />
                 <span>Run Speed Test</span>
               </button>
@@ -108,20 +117,20 @@ export default function Hero({ onOpenSpeedTest, onOpenContact, onExploreServices
 
             {/* Animated Statistics Counter Strip */}
             <div className="pt-6 border-t border-zinc-800/80 grid grid-cols-3 gap-6">
-              <motion.div whileHover={{ scale: 1.03 }}>
+              <motion.div whileHover={{ scale: 1.04 }} className="cursor-pointer">
                 <div className="text-xl sm:text-2xl font-bold text-zinc-100 font-mono flex items-center">
                   <span>15+</span>
                   <span className="text-xs text-cyan-400 ml-1 font-sans">Years</span>
                 </div>
                 <div className="text-xs text-zinc-400">ISP Telecom Expertise</div>
               </motion.div>
-              <motion.div whileHover={{ scale: 1.03 }}>
+              <motion.div whileHover={{ scale: 1.04 }} className="cursor-pointer">
                 <div className="text-xl sm:text-2xl font-bold text-cyan-400 font-mono">
                   <span>10 Gbps</span>
                 </div>
                 <div className="text-xs text-zinc-400">Optical Core Capacity</div>
               </motion.div>
-              <motion.div whileHover={{ scale: 1.03 }}>
+              <motion.div whileHover={{ scale: 1.04 }} className="cursor-pointer">
                 <div className="text-xl sm:text-2xl font-bold text-emerald-400 font-mono">
                   <span>99.9%</span>
                 </div>
@@ -134,10 +143,10 @@ export default function Hero({ onOpenSpeedTest, onOpenContact, onExploreServices
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             className="lg:col-span-5 relative"
           >
-            <div className="glass-panel p-6 border border-zinc-800 space-y-4 hover:border-cyan-500/40 transition-all hover:-translate-y-1">
+            <div className="glass-panel p-6 border border-zinc-800 space-y-4 hover:border-cyan-500/40 transition-all hover:-translate-y-2">
               
               {/* Terminal Window Bar */}
               <div className="flex items-center justify-between pb-3 border-b border-zinc-800">

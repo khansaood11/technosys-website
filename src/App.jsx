@@ -20,6 +20,8 @@ import MouseSpotlight from './components/MouseSpotlight';
 import FloatingWidgets from './components/FloatingWidgets';
 import BrandMarquee from './components/BrandMarquee';
 import ProcessTimeline from './components/ProcessTimeline';
+import LiveNetworkStatus from './components/LiveNetworkStatus';
+import GIDCCoverageVisualizer from './components/GIDCCoverageVisualizer';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('home'); // home, services, plans, coverage, portal, about, contact
@@ -33,7 +35,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#09090B] text-[#FAFAFA] selection:bg-cyan-500 selection:text-black flex flex-col justify-between overflow-x-hidden relative">
+    <div className="min-h-screen bg-[#060B18] text-[#FAFAFA] selection:bg-cyan-500 selection:text-black flex flex-col justify-between overflow-x-hidden relative">
       
       {/* 1. Initial Network Preloader Animation */}
       <NetworkPreloader />
@@ -56,11 +58,16 @@ export default function App() {
       <main className="flex-1">
         {activeTab === 'home' && (
           <div className="animate-fadeIn space-y-4">
+            
+            {/* Hero Section with Aurora & Fiber Node Animations */}
             <Hero
               onOpenSpeedTest={() => setSpeedTestOpen(true)}
               onOpenContact={() => setActiveTab('contact')}
               onExploreServices={() => setActiveTab('services')}
             />
+
+            {/* Live ISP Network Health Bar */}
+            <LiveNetworkStatus />
 
             {/* Partner Hardware Marquee Carousel */}
             <BrandMarquee />
@@ -98,6 +105,9 @@ export default function App() {
 
               </div>
             </div>
+
+            {/* Interactive Ankleshwar GIDC Coverage Map Topology Visualizer */}
+            <GIDCCoverageVisualizer onOpenContact={() => setActiveTab('contact')} />
 
             {/* 4-Step Animated Connection Process Timeline */}
             <ProcessTimeline onOpenContact={() => setActiveTab('contact')} />
