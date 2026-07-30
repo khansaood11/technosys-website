@@ -13,6 +13,14 @@ import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import PWAInstallBanner from './components/PWAInstallBanner';
 
+// Motion & Interactive Components
+import NetworkPreloader from './components/NetworkPreloader';
+import ScrollProgress from './components/ScrollProgress';
+import MouseSpotlight from './components/MouseSpotlight';
+import FloatingWidgets from './components/FloatingWidgets';
+import BrandMarquee from './components/BrandMarquee';
+import ProcessTimeline from './components/ProcessTimeline';
+
 export default function App() {
   const [activeTab, setActiveTab] = useState('home'); // home, services, plans, coverage, portal, about, contact
   const [speedTestOpen, setSpeedTestOpen] = useState(false);
@@ -25,8 +33,17 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#09090B] text-[#FAFAFA] selection:bg-cyan-500 selection:text-black flex flex-col justify-between overflow-x-hidden">
+    <div className="min-h-screen bg-[#09090B] text-[#FAFAFA] selection:bg-cyan-500 selection:text-black flex flex-col justify-between overflow-x-hidden relative">
       
+      {/* 1. Initial Network Preloader Animation */}
+      <NetworkPreloader />
+
+      {/* 2. Top Scroll Progress Indicator */}
+      <ScrollProgress />
+
+      {/* 3. Mouse Spotlight Glow Following Cursor */}
+      <MouseSpotlight />
+
       {/* Navbar */}
       <Navbar
         activeTab={activeTab}
@@ -38,15 +55,18 @@ export default function App() {
       {/* Main View Router */}
       <main className="flex-1">
         {activeTab === 'home' && (
-          <div className="animate-fadeIn">
+          <div className="animate-fadeIn space-y-4">
             <Hero
               onOpenSpeedTest={() => setSpeedTestOpen(true)}
               onOpenContact={() => setActiveTab('contact')}
               onExploreServices={() => setActiveTab('services')}
             />
 
+            {/* Partner Hardware Marquee Carousel */}
+            <BrandMarquee />
+
             {/* Vercel-Style Feature Grid */}
-            <div className="container py-12 pb-16">
+            <div className="container py-8">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 
                 <button
@@ -78,6 +98,10 @@ export default function App() {
 
               </div>
             </div>
+
+            {/* 4-Step Animated Connection Process Timeline */}
+            <ProcessTimeline onOpenContact={() => setActiveTab('contact')} />
+
           </div>
         )}
 
@@ -139,6 +163,9 @@ export default function App() {
         initialPolicy={activePolicyDoc}
         onClose={() => setPolicyModalOpen(false)}
       />
+
+      {/* Floating WhatsApp & Scroll to Top Buttons */}
+      <FloatingWidgets />
 
       {/* PWA Install Notification Prompt */}
       <PWAInstallBanner />
