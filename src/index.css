@@ -113,6 +113,12 @@ body {
   background: var(--accent-purple);
 }
 
+/* Animated Fiber Cable Sweep Keyframes */
+@keyframes fiberSweep {
+  0% { stroke-dashoffset: 720; }
+  100% { stroke-dashoffset: -720; }
+}
+
 /* Animated Fiber Beam Streak */
 .fiber-beam-container {
   position: absolute;

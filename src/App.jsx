@@ -23,6 +23,7 @@ import ProcessTimeline from './components/ProcessTimeline';
 import LiveNetworkStatus from './components/LiveNetworkStatus';
 import GIDCCoverageVisualizer from './components/GIDCCoverageVisualizer';
 import CorporateClients from './components/CorporateClients';
+import FiberOpticBackground from './components/FiberOpticBackground';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('home'); // home, services, plans, coverage, portal, about, contact
@@ -38,7 +39,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#060B18] text-[#FAFAFA] selection:bg-cyan-500 selection:text-black flex flex-col justify-between overflow-x-hidden relative">
       
-      {/* 1. Initial Network Preloader Animation */}
+      {/* 1. Initial Lottie-Style Network Preloader Animation */}
       <NetworkPreloader />
 
       {/* 2. Top Scroll Progress Indicator */}
@@ -46,6 +47,9 @@ export default function App() {
 
       {/* 3. Mouse Spotlight Glow Following Cursor */}
       <MouseSpotlight />
+
+      {/* 4. Global Animated Optical Fiber Cables & Pulsing Nodes Background */}
+      <FiberOpticBackground />
 
       {/* Navbar */}
       <Navbar
@@ -56,7 +60,7 @@ export default function App() {
       />
 
       {/* Main View Router */}
-      <main className="flex-1">
+      <main className="flex-1 relative z-10">
         {activeTab === 'home' && (
           <div className="animate-fadeIn space-y-4">
             
