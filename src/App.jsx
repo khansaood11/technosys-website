@@ -22,6 +22,7 @@ import BrandMarquee from './components/BrandMarquee';
 import ProcessTimeline from './components/ProcessTimeline';
 import LiveNetworkStatus from './components/LiveNetworkStatus';
 import GIDCCoverageVisualizer from './components/GIDCCoverageVisualizer';
+import CorporateClients from './components/CorporateClients';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('home'); // home, services, plans, coverage, portal, about, contact
@@ -71,6 +72,9 @@ export default function App() {
 
             {/* Partner Hardware Marquee Carousel */}
             <BrandMarquee />
+
+            {/* Verified Corporate & Industrial Clients Showcase */}
+            <CorporateClients />
 
             {/* Vercel-Style Feature Grid */}
             <div className="container py-8">
