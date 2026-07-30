@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Gauge, CheckCircle2, Radio, Activity, Zap, Server, Award, Sparkles } from 'lucide-react';
+import { ArrowRight, Gauge, CheckCircle2, FileText, Sparkles, Download, Check } from 'lucide-react';
 
 export default function Hero({ onOpenSpeedTest, onOpenContact, onExploreServices }) {
+  const [downloadingBrochure, setDownloadingBrochure] = useState(false);
+
   // Typewriter heading text effect
   const phrases = [
     "Unrivaled Symmetrical Fiber.",
@@ -37,6 +39,19 @@ export default function Hero({ onOpenSpeedTest, onOpenContact, onExploreServices
 
     return () => clearTimeout(timer);
   }, [displayText, isDeleting, textIndex]);
+
+  const handleDownloadProfile = () => {
+    setDownloadingBrochure(true);
+    setTimeout(() => {
+      const link = document.createElement('a');
+      link.href = 'data:text/plain;charset=utf-8,Technosys%20Teleservices%20(STPL)%20Corporate%20ISP%20Profile%20-%201:1%20Dedicated%20Leased%20Lines%20%26%20GIDC%20Node%20Coverage';
+      link.download = 'Technosys_Corporate_ISP_Profile_2026.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      setDownloadingBrochure(false);
+    }, 1000);
+  };
 
   return (
     <section id="home" className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden border-b border-zinc-800/60">
@@ -86,7 +101,7 @@ export default function Hero({ onOpenSpeedTest, onOpenContact, onExploreServices
               <span className="text-cyan-400 font-semibold">99.9% SLA Uptime</span>
             </div>
 
-            {/* Heading with Fixed Height Typewriter Single Line (Zero Page Shifting) */}
+            {/* Heading with Fixed Height Typewriter Single Line */}
             <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-zinc-50 tracking-tight font-heading space-y-1">
               <div className="text-white block">Dedicated Connectivity.</div>
               <div className="h-[44px] sm:h-[56px] lg:h-[64px] flex items-center overflow-hidden">
@@ -116,15 +131,27 @@ export default function Hero({ onOpenSpeedTest, onOpenContact, onExploreServices
               </span>
             </div>
 
-            {/* Action CTA Buttons */}
+            {/* Action CTA Buttons (Includes PDF Brochure Download) */}
             <div className="flex flex-wrap items-center gap-3 pt-3">
               <button onClick={onOpenContact} className="btn-primary">
-                <span>Connect Now</span>
+                <span>Request 1:1 Site Survey & Quote</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
               <button onClick={onExploreServices} className="btn-secondary">
                 <span>View Plans & Services</span>
+              </button>
+
+              <button
+                onClick={handleDownloadProfile}
+                className="px-4 py-3 rounded-xl bg-zinc-900/90 border border-zinc-700 hover:border-emerald-500/50 text-emerald-400 text-xs font-semibold flex items-center gap-2 transition-all hover:scale-105"
+              >
+                {downloadingBrochure ? (
+                  <Check className="w-4 h-4 text-emerald-400 animate-bounce" />
+                ) : (
+                  <Download className="w-4 h-4 text-emerald-400" />
+                )}
+                <span>{downloadingBrochure ? 'Downloading...' : 'Corporate Profile (PDF)'}</span>
               </button>
 
               <button onClick={onOpenSpeedTest} className="px-4 py-3 rounded-xl bg-zinc-900/90 border border-zinc-800 hover:border-cyan-500/40 text-cyan-400 text-xs font-semibold flex items-center gap-2 transition-all hover:scale-105">

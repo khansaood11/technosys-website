@@ -1,12 +1,56 @@
 import React from 'react';
-import { Wifi, Download, ExternalLink, Code2, Heart } from 'lucide-react';
+import { Wifi, Download, ExternalLink, Code2, MapPin, PhoneCall, Mail, Clock, ShieldCheck } from 'lucide-react';
 
 export default function Footer({ setActiveTab, onOpenPolicy, onOpenContact, onOpenSpeedTest }) {
   return (
-    <footer className="relative bg-[#04060E] border-t border-slate-800 text-slate-400 pt-12 pb-8 mt-12">
-      <div className="container space-y-10">
+    <footer className="relative bg-[#04060E] border-t border-zinc-800/80 text-zinc-400 pt-16 pb-8 mt-16">
+      <div className="container space-y-12">
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pb-10 border-b border-slate-800/80">
+        {/* Top Office & Emergency NOC Contacts Bar */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 rounded-2xl bg-zinc-950/80 border border-zinc-800 text-xs font-mono">
+          <div className="flex items-start gap-3">
+            <div className="p-2.5 rounded-xl bg-cyan-950/80 border border-cyan-500/30 text-cyan-400 shrink-0">
+              <MapPin className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="font-bold text-white font-sans text-sm">Corporate Office</div>
+              <div className="text-zinc-400 mt-0.5">315, Golden Square, Valia Rd, Ankleshwar, Dist - Bharuch, Gujarat 393002</div>
+              <a
+                href="https://maps.google.com/?q=Ankleshwar+Valia+Rd"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-cyan-400 hover:underline flex items-center gap-1 mt-1 text-[11px]"
+              >
+                <span>View Google Maps Location</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-3">
+            <div className="p-2.5 rounded-xl bg-emerald-950/80 border border-emerald-500/30 text-emerald-400 shrink-0">
+              <PhoneCall className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="font-bold text-white font-sans text-sm">Emergency NOC & Support</div>
+              <div className="text-zinc-300 mt-0.5 font-bold">+91 70435 39045 / 95122 25277</div>
+              <div className="text-emerald-400 text-[11px] mt-0.5">24/7/365 Proactive NOC Monitoring</div>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-3">
+            <div className="p-2.5 rounded-xl bg-purple-950/80 border border-purple-500/30 text-purple-400 shrink-0">
+              <Clock className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="font-bold text-white font-sans text-sm">Business Hours & Sales</div>
+              <div className="text-zinc-400 mt-0.5">Mon - Sat: 9:00 AM - 8:00 PM</div>
+              <div className="text-zinc-400 text-[11px]">sales@techosysonline.com</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pb-10 border-b border-zinc-800/80">
           
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-4">
@@ -16,30 +60,35 @@ export default function Footer({ setActiveTab, onOpenPolicy, onOpenContact, onOp
               </div>
               <div className="flex flex-col">
                 <span className="font-heading font-extrabold text-2xl text-white">TECHNOSYS</span>
-                <span className="text-[10px] text-slate-400 uppercase font-medium">Sparkline Technosys Private Limited</span>
+                <span className="text-[10px] text-zinc-400 uppercase font-medium">Sparkline Technosys Private Limited</span>
               </div>
             </button>
 
-            <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
-              Technosys is Ankleshwar's premier Internet Service Provider, delivering high-speed 1:1 dedicated Leased Lines, Symmetrical Fiber, Smart Surveillance, and Enterprise IT solutions with guaranteed SLA.
+            <p className="text-xs text-zinc-400 leading-relaxed max-w-sm">
+              Sparkline Technosys Pvt. Ltd. (STPL) is Ankleshwar, Panoli & Jhagadia GIDC's premier Internet Service Provider, delivering high-speed 1:1 dedicated Leased Lines, Symmetrical Fiber, Smart Surveillance, and Enterprise IT solutions with guaranteed SLA.
             </p>
 
-            {/* App Store Mockup Buttons */}
+            <div className="text-[11px] font-mono text-zinc-500 space-y-0.5 pt-1">
+              <div>CIN: U72900GJ2010PTC062145</div>
+              <div>Celebrating 16 Years (Est. 17th August 2010)</div>
+            </div>
+
+            {/* Subscriber App */}
             <div className="pt-1">
-              <div className="text-[11px] font-bold text-slate-300 uppercase mb-2">Get Subscriber Mobile App</div>
+              <div className="text-[11px] font-bold text-zinc-300 uppercase mb-2">Subscriber Self-Care App</div>
               <div className="flex flex-wrap gap-2">
-                <button onClick={onOpenContact} className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs hover:border-cyan-500/40 transition-colors">
+                <button onClick={onOpenContact} className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-zinc-900 border border-zinc-800 text-white text-xs hover:border-cyan-500/40 transition-colors">
                   <Download className="w-4 h-4 text-cyan-400" />
                   <div className="text-left leading-tight">
-                    <div className="text-[9px] text-slate-400">GET IT ON</div>
+                    <div className="text-[9px] text-zinc-400">GET IT ON</div>
                     <div className="font-bold text-xs">Google Play</div>
                   </div>
                 </button>
 
-                <button onClick={onOpenContact} className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs hover:border-cyan-500/40 transition-colors">
+                <button onClick={onOpenContact} className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-zinc-900 border border-zinc-800 text-white text-xs hover:border-cyan-500/40 transition-colors">
                   <Download className="w-4 h-4 text-indigo-400" />
                   <div className="text-left leading-tight">
-                    <div className="text-[9px] text-slate-400">DOWNLOAD ON THE</div>
+                    <div className="text-[9px] text-zinc-400">DOWNLOAD ON THE</div>
                     <div className="font-bold text-xs">App Store</div>
                   </div>
                 </button>
@@ -107,13 +156,13 @@ export default function Footer({ setActiveTab, onOpenPolicy, onOpenContact, onOp
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 pt-2">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500 pt-2">
           <div>
             Copyright © 2026 Technosys (Sparkline Technosys Private Limited). All Rights Reserved.
           </div>
 
           {/* Designer & Developer Credit */}
-          <div className="flex items-center gap-2 bg-slate-900/80 px-3.5 py-1.5 rounded-full border border-slate-800 text-slate-400">
+          <div className="flex items-center gap-2 bg-zinc-900/80 px-3.5 py-1.5 rounded-full border border-zinc-800 text-zinc-400">
             <Code2 className="w-3.5 h-3.5 text-cyan-400" />
             <span>Designed & Developed by</span>
             <a

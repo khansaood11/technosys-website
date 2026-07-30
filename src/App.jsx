@@ -24,6 +24,7 @@ import LiveNetworkStatus from './components/LiveNetworkStatus';
 import GIDCCoverageVisualizer from './components/GIDCCoverageVisualizer';
 import CorporateClients from './components/CorporateClients';
 import FiberOpticBackground from './components/FiberOpticBackground';
+import InfrastructureShowcase from './components/InfrastructureShowcase';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('home'); // home, services, plans, coverage, portal, about, contact
@@ -114,10 +115,13 @@ export default function App() {
               </div>
             </div>
 
+            {/* Physical Telecom Infrastructure Showcase */}
+            <InfrastructureShowcase onOpenContact={() => setActiveTab('contact')} />
+
             {/* Interactive Ankleshwar GIDC Coverage Map Topology Visualizer */}
             <GIDCCoverageVisualizer onOpenContact={() => setActiveTab('contact')} />
 
-            {/* 4-Step Animated Connection Process Timeline */}
+            {/* 5-Step Animated Connection Process Timeline */}
             <ProcessTimeline onOpenContact={() => setActiveTab('contact')} />
 
           </div>

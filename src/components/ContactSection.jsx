@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle2, Building, MessageSquare } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle2, Building, MessageSquare, ShieldCheck } from 'lucide-react';
 
 export default function ContactSection({ isOpenModal, onCloseModal }) {
   const [formData, setFormData] = useState({
@@ -124,10 +124,17 @@ export default function ContactSection({ isOpenModal, onCloseModal }) {
             ></textarea>
           </div>
 
-          <button type="submit" className="btn-primary w-full py-4 text-xs font-bold uppercase tracking-wider">
-            <Send className="w-4 h-4" />
-            <span>Submit Connection Request</span>
-          </button>
+          {/* Form Submit & Anti-Spam Security Shield */}
+          <div className="space-y-2 pt-1">
+            <button type="submit" className="btn-primary w-full py-4 text-xs font-bold uppercase tracking-wider">
+              <Send className="w-4 h-4" />
+              <span>Request 1:1 Feasibility Survey & Quote</span>
+            </button>
+            <div className="flex items-center justify-center gap-1.5 text-[10px] font-mono text-zinc-400">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Protected by Technosys Anti-Spam & SSL Encryption Shield</span>
+            </div>
+          </div>
         </form>
       )}
     </div>
