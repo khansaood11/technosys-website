@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Phone, Gauge, Menu, X } from 'lucide-react';
 import TechnosysLogo from './TechnosysLogo';
-import ThemeSwitcher from './ThemeSwitcher';
 
-export default function Navbar({ activeTab, setActiveTab, onOpenSpeedTest, onOpenPolicy, currentTheme, setTheme }) {
+export default function Navbar({ activeTab, setActiveTab, onOpenSpeedTest, onOpenPolicy }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -26,21 +25,21 @@ export default function Navbar({ activeTab, setActiveTab, onOpenSpeedTest, onOpe
   ];
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[#060913]/95 backdrop-blur-md border-b border-cyan-500/20 py-3 shadow-2xl' : 'bg-[#060913]/80 backdrop-blur-sm py-4 border-b border-white/5'}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${scrolled ? 'bg-[#09090B]/95 backdrop-blur-md border-b border-zinc-800 py-3 shadow-xl' : 'bg-[#09090B]/80 backdrop-blur-sm py-4 border-b border-zinc-900'}`}>
       
       {/* Top Info Bar */}
-      <div className="hidden lg:block border-b border-white/5 pb-2 mb-2 text-xs text-slate-400">
+      <div className="hidden lg:block border-b border-zinc-900 pb-2 mb-2 text-xs text-zinc-400 font-mono">
         <div className="container flex justify-between items-center">
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-2">
               <span className="live-indicator"></span>
-              <span className="text-slate-300 font-medium">STPL Status: <span className="text-emerald-400 font-bold">100% Operational (99.9% SLA)</span></span>
+              <span className="text-zinc-300">STPL Network: <span className="text-emerald-400 font-bold">100% Operational (99.9% SLA)</span></span>
             </span>
-            <span className="text-slate-600">|</span>
-            <span className="text-slate-400">Ankleshwar GIDC & Bharuch District Premier ISP</span>
+            <span className="text-zinc-800">|</span>
+            <span>Ankleshwar GIDC & Bharuch District Premier ISP</span>
           </div>
           <div className="flex items-center gap-6">
-            <a href="tel:+917043539045" className="flex items-center gap-1.5 hover:text-cyan-400 transition-colors font-mono font-bold text-white">
+            <a href="tel:+917043539045" className="flex items-center gap-1.5 hover:text-cyan-400 transition-colors font-bold text-white">
               <Phone className="w-3.5 h-3.5 text-cyan-400" />
               <span>+91 70435 39045</span>
             </a>
@@ -48,7 +47,7 @@ export default function Navbar({ activeTab, setActiveTab, onOpenSpeedTest, onOpe
               sales@technosysonline.com
             </a>
             <button onClick={() => onOpenPolicy('Terms & Conditions')} className="hover:text-cyan-400 transition-colors">
-              Terms & Security
+              Terms & Policy
             </button>
           </div>
         </div>
@@ -56,21 +55,21 @@ export default function Navbar({ activeTab, setActiveTab, onOpenSpeedTest, onOpe
 
       <div className="container flex items-center justify-between">
         
-        {/* Brand Logo with Redefined T Mark */}
+        {/* Brand Logo */}
         <button onClick={() => setActiveTab('home')} className="text-left focus:outline-none">
           <TechnosysLogo />
         </button>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-1 text-sm font-medium text-slate-300 bg-slate-900/60 p-1.5 rounded-xl border border-slate-800">
+        <nav className="hidden md:flex items-center gap-1 text-xs font-semibold text-zinc-300 bg-zinc-900/80 p-1.5 rounded-xl border border-zinc-800">
           {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => setActiveTab(item.id)}
-              className={`px-3.5 py-2 rounded-lg text-xs font-bold transition-all ${
+              className={`px-3 py-1.5 rounded-lg transition-all ${
                 activeTab === item.id
-                  ? 'bg-cyan-500 text-black shadow-md shadow-cyan-500/20 scale-105'
-                  : 'text-slate-300 hover:text-cyan-400 hover:bg-slate-800/60'
+                  ? 'bg-zinc-100 text-zinc-950 font-bold shadow-sm'
+                  : 'text-zinc-300 hover:text-white hover:bg-zinc-800/80'
               }`}
             >
               {item.label}
@@ -78,48 +77,42 @@ export default function Navbar({ activeTab, setActiveTab, onOpenSpeedTest, onOpe
           ))}
         </nav>
 
-        {/* Header Controls: Theme Switcher + Speed Test */}
+        {/* Header Controls: Speed Test & Hotline */}
         <div className="hidden md:flex items-center gap-3">
-          <ThemeSwitcher currentTheme={currentTheme} setTheme={setTheme} />
-
           <button
             onClick={onOpenSpeedTest}
-            className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/20 text-xs font-semibold tracking-wide transition-all hover:scale-105"
+            className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-cyan-400 text-xs font-semibold tracking-wide transition-all"
           >
-            <Gauge className="w-4 h-4 text-cyan-400 animate-pulse" />
+            <Gauge className="w-4 h-4 text-cyan-400" />
             <span>Speed Test</span>
           </button>
         </div>
 
-        {/* Mobile Controls */}
-        <div className="flex md:hidden items-center gap-2">
-          <ThemeSwitcher currentTheme={currentTheme} setTheme={setTheme} />
-          
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-lg bg-slate-800 text-slate-300 hover:text-white"
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
+        {/* Mobile Hamburger Toggle */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden p-2 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white"
+        >
+          {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
 
       </div>
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden glass-panel mt-3 mx-4 p-5 flex flex-col gap-2 text-slate-200 animate-fadeIn border border-cyan-500/20">
+        <div className="md:hidden glass-panel mt-3 mx-4 p-5 flex flex-col gap-2 text-zinc-200 animate-fadeIn border border-zinc-800">
           {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => { setActiveTab(item.id); setMobileMenuOpen(false); }}
               className={`text-left py-2.5 px-3 rounded-lg text-sm font-semibold transition-colors ${
-                activeTab === item.id ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30' : 'hover:text-cyan-400'
+                activeTab === item.id ? 'bg-zinc-800 text-cyan-400 border border-zinc-700' : 'hover:text-white'
               }`}
             >
               {item.label}
             </button>
           ))}
-          <div className="pt-3 border-t border-slate-800 flex flex-col gap-2">
+          <div className="pt-3 border-t border-zinc-800 flex flex-col gap-2">
             <a
               href="tel:+917043539045"
               className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-xs"
@@ -130,7 +123,7 @@ export default function Navbar({ activeTab, setActiveTab, onOpenSpeedTest, onOpe
 
             <button
               onClick={() => { setMobileMenuOpen(false); onOpenSpeedTest(); }}
-              className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-medium text-xs"
+              className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-zinc-900 border border-zinc-700 text-cyan-400 font-semibold text-xs"
             >
               <Gauge className="w-4 h-4" />
               <span>Launch Live Speed Test</span>
