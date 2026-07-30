@@ -241,6 +241,22 @@ h1, h2, h3, h4, .font-heading {
   100% { transform: scale(2.2); opacity: 0; }
 }
 
+/* Continuous Infinite Marquee Motion */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
 .container {
   max-width: 1240px;
   margin-left: auto;
