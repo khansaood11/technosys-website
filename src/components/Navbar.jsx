@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Phone, Gauge, Menu, X } from 'lucide-react';
 import TechnosysLogo from './TechnosysLogo';
 
@@ -29,7 +30,7 @@ export default function Navbar({ activeTab, setActiveTab, onOpenSpeedTest, onOpe
       
       {/* Top Info Bar */}
       <div className="hidden lg:block border-b border-zinc-900 pb-2 mb-2 text-xs text-zinc-400 font-mono">
-        <div className="container flex justify-between items-center">
+        <div className="w-full px-6 flex justify-between items-center max-w-[1440px] mx-auto">
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-2">
               <span className="live-indicator"></span>
@@ -53,7 +54,7 @@ export default function Navbar({ activeTab, setActiveTab, onOpenSpeedTest, onOpe
         </div>
       </div>
 
-      <div className="container flex items-center justify-between">
+      <div className="w-full px-4 sm:px-8 max-w-[1440px] mx-auto flex items-center justify-between">
         
         {/* Brand Logo */}
         <button onClick={() => setActiveTab('home')} className="text-left focus:outline-none">
@@ -66,7 +67,7 @@ export default function Navbar({ activeTab, setActiveTab, onOpenSpeedTest, onOpe
             <button
               key={item.id}
               onClick={() => setActiveTab(item.id)}
-              className={`px-3 py-1.5 rounded-lg transition-all ${
+              className={`px-3.5 py-1.5 rounded-lg transition-all ${
                 activeTab === item.id
                   ? 'bg-zinc-100 text-zinc-950 font-bold shadow-sm'
                   : 'text-zinc-300 hover:text-white hover:bg-zinc-800/80'
@@ -98,39 +99,47 @@ export default function Navbar({ activeTab, setActiveTab, onOpenSpeedTest, onOpe
 
       </div>
 
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div className="md:hidden glass-panel mt-3 mx-4 p-5 flex flex-col gap-2 text-zinc-200 animate-fadeIn border border-zinc-800">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => { setActiveTab(item.id); setMobileMenuOpen(false); }}
-              className={`text-left py-2.5 px-3 rounded-lg text-sm font-semibold transition-colors ${
-                activeTab === item.id ? 'bg-zinc-800 text-cyan-400 border border-zinc-700' : 'hover:text-white'
-              }`}
-            >
-              {item.label}
-            </button>
-          ))}
-          <div className="pt-3 border-t border-zinc-800 flex flex-col gap-2">
-            <a
-              href="tel:+917043539045"
-              className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-xs"
-            >
-              <Phone className="w-4 h-4" />
-              <span>Call +91 70435 39045</span>
-            </a>
+      {/* Full-Width Animated Mobile Drawer Side Slide Effect */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+            className="md:hidden bg-[#09090B] border-b border-zinc-800 px-6 py-6 flex flex-col gap-2 text-zinc-200 shadow-2xl w-full"
+          >
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => { setActiveTab(item.id); setMobileMenuOpen(false); }}
+                className={`text-left py-3 px-4 rounded-xl text-sm font-semibold transition-all ${
+                  activeTab === item.id ? 'bg-zinc-800 text-cyan-400 border border-cyan-500/30' : 'hover:text-white hover:bg-zinc-900'
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+            <div className="pt-4 mt-2 border-t border-zinc-800/80 flex flex-col gap-2.5">
+              <a
+                href="tel:+917043539045"
+                className="flex items-center justify-center gap-2 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-xs"
+              >
+                <Phone className="w-4 h-4" />
+                <span>Call Hotline: +91 70435 39045</span>
+              </a>
 
-            <button
-              onClick={() => { setMobileMenuOpen(false); onOpenSpeedTest(); }}
-              className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-zinc-900 border border-zinc-700 text-cyan-400 font-semibold text-xs"
-            >
-              <Gauge className="w-4 h-4" />
-              <span>Launch Live Speed Test</span>
-            </button>
-          </div>
-        </div>
-      )}
+              <button
+                onClick={() => { setMobileMenuOpen(false); onOpenSpeedTest(); }}
+                className="flex items-center justify-center gap-2 py-3 rounded-xl bg-zinc-900 border border-zinc-700 text-cyan-400 font-semibold text-xs"
+              >
+                <Gauge className="w-4 h-4" />
+                <span>Launch Live Speed Test</span>
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

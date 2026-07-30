@@ -45,11 +45,11 @@ export default function GIDCCoverageVisualizer({ onOpenContact }) {
                     : 'bg-zinc-900/60 border-zinc-800 text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800'
                 }`}
               >
-                <div className="flex items-center gap-2.5">
-                  <MapPin className={`w-4 h-4 ${selectedNode === idx ? 'text-cyan-400' : 'text-zinc-500'}`} />
-                  <span className="text-xs font-bold font-heading">{node.name}</span>
+                <div className="flex items-center gap-2.5 overflow-hidden">
+                  <MapPin className={`w-4 h-4 shrink-0 ${selectedNode === idx ? 'text-cyan-400' : 'text-zinc-500'}`} />
+                  <span className="text-xs font-bold font-heading truncate">{node.name}</span>
                 </div>
-                <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0 ml-2"></span>
               </motion.button>
             ))}
           </div>
@@ -63,12 +63,12 @@ export default function GIDCCoverageVisualizer({ onOpenContact }) {
               transition={{ duration: 0.3 }}
               className="glass-panel p-6 border border-cyan-500/30 space-y-6 bg-[#080E1E]"
             >
-              <div className="flex justify-between items-center pb-4 border-b border-zinc-800">
-                <div>
-                  <h3 className="text-xl font-bold text-white font-heading">{active.name}</h3>
-                  <p className="text-xs font-mono text-emerald-400 mt-0.5">{active.status} • Symmetrical Fiber</p>
+              <div className="flex flex-col sm:flex-row justify-between sm:items-center pb-4 border-b border-zinc-800 gap-2">
+                <div className="min-w-0 flex-1">
+                  <h3 className="text-base sm:text-xl font-bold text-white font-heading truncate">{active.name}</h3>
+                  <p className="text-[11px] sm:text-xs font-mono text-emerald-400 mt-0.5 truncate">{active.status} • Symmetrical Fiber</p>
                 </div>
-                <div className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold">
+                <div className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] sm:text-xs font-mono font-bold whitespace-nowrap self-start sm:self-auto shrink-0">
                   100% Serviceable
                 </div>
               </div>

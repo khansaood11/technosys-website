@@ -58,19 +58,19 @@ export default function CorporateClients() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="glass-panel p-6 border border-zinc-800 hover:border-cyan-500/40 transition-all hover:-translate-y-1 space-y-4"
+                className="glass-panel p-5 sm:p-6 border border-zinc-800 hover:border-cyan-500/40 transition-all hover:-translate-y-1 space-y-4"
               >
-                <div className="flex items-center justify-between pb-3 border-b border-zinc-800/80">
-                  <div className="flex items-center gap-3">
-                    <div className={`p-2.5 rounded-xl border ${cat.color}`}>
-                      <Icon className="w-5 h-5" />
+                <div className="flex items-center justify-between pb-3 border-b border-zinc-800/80 gap-2">
+                  <div className="flex items-center gap-2.5 overflow-hidden">
+                    <div className={`p-2 rounded-xl border shrink-0 ${cat.color}`}>
+                      <Icon className="w-4 h-4" />
                     </div>
-                    <div>
-                      <h3 className="text-base font-bold text-white font-heading">{cat.category}</h3>
-                      <p className="text-[11px] font-mono text-zinc-400">{cat.zone}</p>
+                    <div className="min-w-0">
+                      <h3 className="text-sm sm:text-base font-bold text-white font-heading truncate">{cat.category}</h3>
+                      <p className="text-[10px] sm:text-[11px] font-mono text-zinc-400 truncate">{cat.zone}</p>
                     </div>
                   </div>
-                  <span className="text-[10px] font-mono bg-zinc-800 text-cyan-400 px-2 py-0.5 rounded border border-zinc-700">
+                  <span className="text-[9px] sm:text-[10px] font-mono bg-zinc-800 text-cyan-400 px-2 py-0.5 rounded border border-zinc-700 whitespace-nowrap shrink-0">
                     1:1 ILL SLA
                   </span>
                 </div>
@@ -79,10 +79,10 @@ export default function CorporateClients() {
                   {cat.clients.map((client, cIdx) => (
                     <span
                       key={cIdx}
-                      className="px-3 py-1.5 rounded-lg bg-zinc-900/90 border border-zinc-800 text-xs font-semibold text-zinc-200 hover:text-white hover:border-zinc-700 transition-colors flex items-center gap-1.5"
+                      className="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-zinc-900/90 border border-zinc-800 text-[11px] sm:text-xs font-semibold text-zinc-200 hover:text-white hover:border-zinc-700 transition-colors flex items-center gap-1.5"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
-                      <span>{client}</span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0"></span>
+                      <span className="whitespace-nowrap">{client}</span>
                     </span>
                   ))}
                 </div>

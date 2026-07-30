@@ -119,7 +119,7 @@ export default function ServicesSection({ onOpenContact }) {
 
   return (
     <section id="services" className="relative section-padding bg-[#070A14]">
-      <div className="container relative z-10 space-y-20">
+      <div className="container relative z-10 space-y-16 sm:space-y-20">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
@@ -135,17 +135,17 @@ export default function ServicesSection({ onOpenContact }) {
           </p>
         </div>
 
-        {/* Official Fiber Broadband Plans Pricing Table (Transcribed from Rate Card Flyer) */}
-        <div className="glass-panel p-6 sm:p-8 border border-cyan-500/30 space-y-6">
+        {/* Official Fiber Broadband Plans Pricing Table */}
+        <div className="glass-panel p-5 sm:p-8 border border-cyan-500/30 space-y-6">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-6 border-b border-zinc-800">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-semibold mb-2">
                 <Tag className="w-3.5 h-3.5" />
                 <span>Official Technosys Fiber Rate Card</span>
               </div>
-              <h3 className="text-2xl font-bold text-white font-heading">Fiber Broadband Plans & Tenure Matrix</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-white font-heading">Fiber Broadband Plans & Tenure Matrix</h3>
             </div>
-            <button onClick={onOpenContact} className="btn-primary py-2.5 text-xs font-bold">
+            <button onClick={onOpenContact} className="btn-primary py-2.5 text-xs font-bold w-full sm:w-auto">
               <span>Book Connection Now</span>
               <ArrowRight className="w-4 h-4" />
             </button>
@@ -153,7 +153,7 @@ export default function ServicesSection({ onOpenContact }) {
 
           {/* Pricing Table */}
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm border-collapse">
+            <table className="w-full text-left text-sm border-collapse min-w-[500px]">
               <thead>
                 <tr className="border-b border-zinc-800 text-xs font-mono text-zinc-400 uppercase bg-zinc-950/60">
                   <th className="py-4 px-4">Speed</th>
@@ -178,7 +178,7 @@ export default function ServicesSection({ onOpenContact }) {
                     <td className="py-4 px-4 font-mono font-bold text-indigo-300 text-base">{plan.m18}</td>
                     <td className="py-4 px-4 font-mono font-bold text-purple-300 text-base">{plan.m24}</td>
                     <td className="py-4 px-4 text-xs text-zinc-300 font-mono">
-                      <span className="text-emerald-400 font-semibold">Truly Unlimited Data</span> • 24/7 NOC Support
+                      <span className="text-emerald-400 font-semibold">Truly Unlimited Data</span> • 24/7 Support
                     </td>
                   </tr>
                 ))}
@@ -245,27 +245,27 @@ export default function ServicesSection({ onOpenContact }) {
               Featured Internet & Leased Line Plans
             </div>
             
-            <div className="flex gap-2">
+            <div className="flex gap-2 w-full sm:w-auto">
               <button
                 onClick={() => setActivePlanTab('broadband')}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+                className={`flex-1 sm:flex-initial px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                   activePlanTab === 'broadband'
                     ? 'bg-cyan-500 text-black shadow-lg shadow-cyan-500/20'
                     : 'bg-slate-950 text-slate-400 hover:text-white'
                 }`}
               >
-                Broadband Plans (Domestic & Commercial)
+                Broadband Plans
               </button>
 
               <button
                 onClick={() => setActivePlanTab('leased-line')}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+                className={`flex-1 sm:flex-initial px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                   activePlanTab === 'leased-line'
                     ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-500/20'
                     : 'bg-slate-950 text-slate-400 hover:text-white'
                 }`}
               >
-                Leased Line Plans (Semi & Dedicated 1:1)
+                Leased Line Plans
               </button>
             </div>
           </div>
@@ -275,7 +275,7 @@ export default function ServicesSection({ onOpenContact }) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-fadeIn">
               
               {/* Domestic Broadband Card */}
-              <div className="glass-panel p-8 border-cyan-500/30 space-y-6 relative flex flex-col justify-between">
+              <div className="glass-panel p-6 sm:p-8 border-cyan-500/30 space-y-6 relative flex flex-col justify-between">
                 <div className="space-y-4">
                   <div className="flex justify-between items-start">
                     <span className="text-xs font-bold text-cyan-400 uppercase tracking-widest bg-cyan-950/80 px-3 py-1 rounded-full border border-cyan-500/30">
@@ -320,7 +320,7 @@ export default function ServicesSection({ onOpenContact }) {
               </div>
 
               {/* Commercial Broadband Card */}
-              <div className="glass-panel p-8 border-indigo-500/30 space-y-6 relative flex flex-col justify-between">
+              <div className="glass-panel p-6 sm:p-8 border-indigo-500/30 space-y-6 relative flex flex-col justify-between">
                 <div className="space-y-4">
                   <div className="flex justify-between items-start">
                     <span className="text-xs font-bold text-indigo-400 uppercase tracking-widest bg-indigo-950/80 px-3 py-1 rounded-full border border-indigo-500/30">
@@ -372,7 +372,7 @@ export default function ServicesSection({ onOpenContact }) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-fadeIn">
               
               {/* Semi Leased Line Plan Card */}
-              <div className="glass-panel p-8 border-purple-500/30 space-y-6 relative flex flex-col justify-between">
+              <div className="glass-panel p-6 sm:p-8 border-purple-500/30 space-y-6 relative flex flex-col justify-between">
                 <div className="space-y-4">
                   <div className="flex justify-between items-start">
                     <span className="text-xs font-bold text-purple-400 uppercase tracking-widest bg-purple-950/80 px-3 py-1 rounded-full border border-purple-500/30">
@@ -417,7 +417,7 @@ export default function ServicesSection({ onOpenContact }) {
               </div>
 
               {/* Full Dedicated Leased Line Card */}
-              <div className="glass-panel p-8 border-cyan-500/40 space-y-6 relative flex flex-col justify-between bg-gradient-to-b from-[#091126] to-[#060913]">
+              <div className="glass-panel p-6 sm:p-8 border-cyan-500/40 space-y-6 relative flex flex-col justify-between bg-gradient-to-b from-[#091126] to-[#060913]">
                 <div className="space-y-4">
                   <div className="flex justify-between items-start">
                     <span className="text-xs font-bold text-cyan-400 uppercase tracking-widest bg-cyan-950/80 px-3 py-1 rounded-full border border-cyan-500/40">
@@ -466,35 +466,35 @@ export default function ServicesSection({ onOpenContact }) {
 
         </div>
 
-        {/* Core Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Core Services Mobile Snap-Scroll Card Carousel & Desktop Grid */}
+        <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 sm:mx-0 sm:px-0">
           {services.map((srv) => {
             const Icon = srv.icon;
             return (
               <div
                 key={srv.id}
-                className="glass-panel glass-panel-interactive p-8 flex flex-col justify-between group border-slate-800/80 hover:border-cyan-500/40 relative overflow-hidden"
+                className="glass-panel glass-panel-interactive p-6 sm:p-8 flex flex-col justify-between group border-slate-800/80 hover:border-cyan-500/40 relative overflow-hidden shrink-0 w-[85vw] sm:w-auto snap-center"
               >
                 <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${srv.accent}`}></div>
 
                 <div className="space-y-6">
                   <div className="flex justify-between items-start">
-                    <div className={`w-14 h-14 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg`}>
-                      <Icon className="w-7 h-7 text-cyan-400" />
+                    <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg`}>
+                      <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-cyan-400" />
                     </div>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 bg-slate-900/80 px-2.5 py-1 rounded-full border border-slate-800">
+                    <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-400 bg-slate-900/80 px-2.5 py-1 rounded-full border border-slate-800">
                       {srv.category}
                     </span>
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-bold text-white font-heading group-hover:text-cyan-300 transition-colors">
+                    <h3 className="text-lg sm:text-xl font-bold text-white font-heading group-hover:text-cyan-300 transition-colors">
                       {srv.title}
                     </h3>
                     <div className="text-xs font-semibold text-cyan-400 mt-1">{srv.tag}</div>
                   </div>
 
-                  <p className="text-slate-400 text-sm leading-relaxed">
+                  <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
                     {srv.desc}
                   </p>
 
@@ -519,7 +519,7 @@ export default function ServicesSection({ onOpenContact }) {
 
                   <button
                     onClick={onOpenContact}
-                    className="px-3.5 py-1.5 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 text-xs font-semibold transition-colors"
+                    className="px-3 py-1.5 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 text-xs font-semibold transition-colors"
                   >
                     Inquire
                   </button>

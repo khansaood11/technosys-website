@@ -54,7 +54,7 @@ export default function Hero({ onOpenSpeedTest, onOpenContact, onExploreServices
   };
 
   return (
-    <section id="home" className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden border-b border-zinc-800/60">
+    <section id="home" className="relative pt-28 pb-16 md:pt-40 md:pb-28 overflow-hidden border-b border-zinc-800/60">
       {/* 1. Animated Slow Aurora Background */}
       <div className="aurora-bg"></div>
 
@@ -96,9 +96,9 @@ export default function Hero({ onOpenSpeedTest, onOpenContact, onExploreServices
 
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900/90 border border-zinc-800 text-zinc-300 text-xs font-mono font-medium shadow-md ml-0 sm:ml-2">
               <span className="live-indicator"></span>
-              <span>Ankleshwar GIDC & Bharuch Premier ISP</span>
+              <span className="truncate max-w-[200px] sm:max-w-none">Ankleshwar GIDC & Bharuch Premier ISP</span>
               <span className="text-zinc-600">|</span>
-              <span className="text-cyan-400 font-semibold">99.9% SLA Uptime</span>
+              <span className="text-cyan-400 font-semibold shrink-0">99.9% SLA</span>
             </div>
 
             {/* Heading with Fixed Height Typewriter Single Line */}
@@ -131,20 +131,20 @@ export default function Hero({ onOpenSpeedTest, onOpenContact, onExploreServices
               </span>
             </div>
 
-            {/* Action CTA Buttons (Includes PDF Brochure Download) */}
+            {/* Action CTA Buttons */}
             <div className="flex flex-wrap items-center gap-3 pt-3">
-              <button onClick={onOpenContact} className="btn-primary">
+              <button onClick={onOpenContact} className="btn-primary w-full sm:w-auto">
                 <span>Request 1:1 Site Survey & Quote</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
-              <button onClick={onExploreServices} className="btn-secondary">
+              <button onClick={onExploreServices} className="btn-secondary w-full sm:w-auto">
                 <span>View Plans & Services</span>
               </button>
 
               <button
                 onClick={handleDownloadProfile}
-                className="px-4 py-3 rounded-xl bg-zinc-900/90 border border-zinc-700 hover:border-emerald-500/50 text-emerald-400 text-xs font-semibold flex items-center gap-2 transition-all hover:scale-105"
+                className="px-4 py-3 rounded-xl bg-zinc-900/90 border border-zinc-700 hover:border-emerald-500/50 text-emerald-400 text-xs font-semibold flex items-center justify-center gap-2 transition-all hover:scale-105 w-full sm:w-auto"
               >
                 {downloadingBrochure ? (
                   <Check className="w-4 h-4 text-emerald-400 animate-bounce" />
@@ -154,32 +154,32 @@ export default function Hero({ onOpenSpeedTest, onOpenContact, onExploreServices
                 <span>{downloadingBrochure ? 'Downloading...' : 'Corporate Profile (PDF)'}</span>
               </button>
 
-              <button onClick={onOpenSpeedTest} className="px-4 py-3 rounded-xl bg-zinc-900/90 border border-zinc-800 hover:border-cyan-500/40 text-cyan-400 text-xs font-semibold flex items-center gap-2 transition-all hover:scale-105">
+              <button onClick={onOpenSpeedTest} className="px-4 py-3 rounded-xl bg-zinc-900/90 border border-zinc-800 hover:border-cyan-500/40 text-cyan-400 text-xs font-semibold flex items-center justify-center gap-2 transition-all hover:scale-105 w-full sm:w-auto">
                 <Gauge className="w-4 h-4 text-cyan-400 animate-pulse" />
                 <span>Run Speed Test</span>
               </button>
             </div>
 
             {/* Floating Statistics Counter Strip */}
-            <div className="pt-6 border-t border-zinc-800/80 grid grid-cols-3 gap-6">
+            <div className="pt-6 border-t border-zinc-800/80 grid grid-cols-3 gap-4 sm:gap-6">
               <motion.div whileHover={{ scale: 1.04, y: -2 }} className="cursor-pointer">
-                <div className="text-xl sm:text-2xl font-bold text-amber-300 font-mono flex items-center">
+                <div className="text-lg sm:text-2xl font-bold text-amber-300 font-mono flex items-center">
                   <span>16</span>
                   <span className="text-xs text-amber-400 ml-1 font-sans">Years</span>
                 </div>
-                <div className="text-xs text-zinc-400">Serving Gujarat Since 2010</div>
+                <div className="text-[11px] sm:text-xs text-zinc-400">Serving Gujarat Since 2010</div>
               </motion.div>
               <motion.div whileHover={{ scale: 1.04, y: -2 }} className="cursor-pointer">
-                <div className="text-xl sm:text-2xl font-bold text-cyan-400 font-mono">
+                <div className="text-lg sm:text-2xl font-bold text-cyan-400 font-mono">
                   <span>10 Gbps</span>
                 </div>
-                <div className="text-xs text-zinc-400">Optical Core Capacity</div>
+                <div className="text-[11px] sm:text-xs text-zinc-400">Optical Core Capacity</div>
               </motion.div>
               <motion.div whileHover={{ scale: 1.04, y: -2 }} className="cursor-pointer">
-                <div className="text-xl sm:text-2xl font-bold text-emerald-400 font-mono">
+                <div className="text-lg sm:text-2xl font-bold text-emerald-400 font-mono">
                   <span>99.9%</span>
                 </div>
-                <div className="text-xs text-zinc-400">Guaranteed SLA Uptime</div>
+                <div className="text-[11px] sm:text-xs text-zinc-400">Guaranteed SLA Uptime</div>
               </motion.div>
             </div>
           </motion.div>
@@ -191,17 +191,17 @@ export default function Hero({ onOpenSpeedTest, onOpenContact, onExploreServices
             transition={{ duration: 0.8, delay: 0.2 }}
             className="lg:col-span-5 relative"
           >
-            <div className="glass-panel p-6 border border-zinc-800 space-y-4 hover:border-cyan-500/40 transition-all hover:-translate-y-2">
+            <div className="glass-panel p-5 sm:p-6 border border-zinc-800 space-y-4 hover:border-cyan-500/40 transition-all">
               
-              {/* Terminal Window Bar */}
-              <div className="flex items-center justify-between pb-3 border-b border-zinc-800">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                  <div className="w-3 h-3 rounded-full bg-emerald-500/80"></div>
-                  <span className="text-xs font-mono text-zinc-400 ml-2">stpl-node-ankleshwar.sys</span>
+              {/* Single-Line Terminal Window Header Bar */}
+              <div className="flex items-center justify-between pb-3 border-b border-zinc-800 gap-2">
+                <div className="flex items-center gap-1.5 overflow-hidden">
+                  <div className="w-2.5 h-2.5 rounded-full bg-red-500/80 shrink-0"></div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80 shrink-0"></div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 shrink-0"></div>
+                  <span className="text-[10px] sm:text-xs font-mono text-zinc-400 ml-1 truncate">stpl-node-ankleshwar.sys</span>
                 </div>
-                <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/30">
+                <span className="text-[9px] sm:text-[10px] font-mono text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/30 whitespace-nowrap shrink-0">
                   ONLINE • 2.4ms Ping
                 </span>
               </div>
