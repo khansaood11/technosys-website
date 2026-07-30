@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Phone, Gauge, Menu, X } from 'lucide-react';
+import { Phone, Gauge, Menu, X, ArrowRight, MessageSquare } from 'lucide-react';
 import TechnosysLogo from './TechnosysLogo';
 
 export default function Navbar({ activeTab, setActiveTab, onOpenSpeedTest, onOpenPolicy }) {
@@ -22,7 +22,6 @@ export default function Navbar({ activeTab, setActiveTab, onOpenSpeedTest, onOpe
     { id: 'coverage', label: 'Coverage' },
     { id: 'portal', label: 'My Portal' },
     { id: 'about', label: 'About Us' },
-    { id: 'contact', label: 'Connect Now' },
   ];
 
   return (
@@ -54,15 +53,15 @@ export default function Navbar({ activeTab, setActiveTab, onOpenSpeedTest, onOpe
         </div>
       </div>
 
-      <div className="w-full px-4 sm:px-8 max-w-[1440px] mx-auto flex items-center justify-between">
+      <div className="w-full px-4 sm:px-8 max-w-[1440px] mx-auto flex items-center justify-between gap-4">
         
         {/* Brand Logo */}
-        <button onClick={() => setActiveTab('home')} className="text-left focus:outline-none">
+        <button onClick={() => setActiveTab('home')} className="text-left focus:outline-none shrink-0">
           <TechnosysLogo />
         </button>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-1 text-xs font-semibold text-zinc-300 bg-zinc-900/80 p-1.5 rounded-xl border border-zinc-800">
+        <nav className="hidden md:flex items-center gap-1 text-xs font-semibold text-zinc-300 bg-zinc-900/90 p-1.5 rounded-xl border border-zinc-800">
           {navItems.map((item) => (
             <button
               key={item.id}
@@ -78,21 +77,42 @@ export default function Navbar({ activeTab, setActiveTab, onOpenSpeedTest, onOpe
           ))}
         </nav>
 
-        {/* Header Controls: Speed Test & Hotline */}
-        <div className="hidden md:flex items-center gap-3">
+        {/* Header Controls: Speed Test & SEPARATELY DESIGNED CONNECT NOW BUTTON */}
+        <div className="hidden md:flex items-center gap-3 shrink-0">
+          
+          {/* Speed Test Button */}
           <button
             onClick={onOpenSpeedTest}
-            className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-cyan-400 text-xs font-semibold tracking-wide transition-all"
+            className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-cyan-400 text-xs font-semibold tracking-wide transition-all hover:border-cyan-500/40"
           >
             <Gauge className="w-4 h-4 text-cyan-400" />
             <span>Speed Test</span>
           </button>
+
+          {/* SEPARATELY DESIGNED "CONNECT NOW" HIGH-IMPACT GRADIENT CTA BUTTON */}
+          <button
+            onClick={() => setActiveTab('contact')}
+            className={`relative p-[1.5px] rounded-xl transition-all duration-300 hover:scale-105 ${
+              activeTab === 'contact'
+                ? 'ring-2 ring-cyan-400 ring-offset-2 ring-offset-black'
+                : 'hover:shadow-lg hover:shadow-cyan-500/25'
+            }`}
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-red-500 to-indigo-500 rounded-xl animate-gradient-x"></div>
+            <div className="relative px-4 py-2 bg-zinc-950 rounded-[10px] flex items-center gap-2 font-bold text-xs text-white group">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              <MessageSquare className="w-3.5 h-3.5 text-cyan-400" />
+              <span className="gradient-text font-heading">Connect Now</span>
+              <ArrowRight className="w-3.5 h-3.5 text-cyan-400 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </button>
+
         </div>
 
         {/* Mobile Hamburger Toggle */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white"
+          className="md:hidden p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white"
         >
           {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
@@ -107,7 +127,7 @@ export default function Navbar({ activeTab, setActiveTab, onOpenSpeedTest, onOpe
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="md:hidden bg-[#09090B] border-b border-zinc-800 px-6 py-6 flex flex-col gap-2 text-zinc-200 shadow-2xl w-full"
+            className="md:hidden bg-[#09090B] border-b border-zinc-800 px-6 py-6 flex flex-col gap-2.5 text-zinc-200 shadow-2xl w-full"
           >
             {navItems.map((item) => (
               <button
@@ -120,7 +140,24 @@ export default function Navbar({ activeTab, setActiveTab, onOpenSpeedTest, onOpe
                 {item.label}
               </button>
             ))}
-            <div className="pt-4 mt-2 border-t border-zinc-800/80 flex flex-col gap-2.5">
+
+            {/* SEPARATELY DESIGNED "CONNECT NOW" MOBILE CTA BUTTON */}
+            <div className="pt-2">
+              <button
+                onClick={() => { setActiveTab('contact'); setMobileMenuOpen(false); }}
+                className="w-full relative p-[1.5px] rounded-xl overflow-hidden shadow-xl"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-red-500 to-indigo-500"></div>
+                <div className="relative py-3 px-4 bg-zinc-950 rounded-[10px] flex items-center justify-center gap-2 font-bold text-sm text-white">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                  <MessageSquare className="w-4 h-4 text-cyan-400" />
+                  <span className="gradient-text font-heading">Connect Now</span>
+                  <ArrowRight className="w-4 h-4 text-cyan-400" />
+                </div>
+              </button>
+            </div>
+
+            <div className="pt-3 border-t border-zinc-800/80 flex flex-col gap-2.5">
               <a
                 href="tel:+917043539045"
                 className="flex items-center justify-center gap-2 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-xs"
