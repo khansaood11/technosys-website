@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
-import { Server, Wifi, Shield, Cpu, Tv, Radio, ArrowRight, CheckCircle2, X, Zap, Building } from 'lucide-react';
+import { Server, Wifi, Shield, Cpu, Tv, Radio, ArrowRight, CheckCircle2, X, Zap, Building, PhoneCall, MapPin, Tag } from 'lucide-react';
 
 export default function ServicesSection({ onOpenContact }) {
   const [selectedService, setSelectedService] = useState(null);
-  const [activePlanTab, setActivePlanTab] = useState('broadband'); // broadband, leased-line
+  const [activePlanTab, setActivePlanTab] = useState('broadband'); // broadband, rate-matrix, leased-line
+
+  // Official Technosys Fiber Broadband Rate Card Matrix
+  const broadbandRates = [
+    { speed: '20 Mbps', m12: '₹8,999', m18: '₹10,999', m24: '₹12,999', popular: false },
+    { speed: '50 Mbps', m12: '₹10,999', m18: '₹13,999', m24: '₹16,999', popular: true },
+    { speed: '60 Mbps', m12: '₹11,999', m18: '₹14,999', m24: '₹17,999', popular: false },
+    { speed: '100 Mbps', m12: '₹16,999', m18: '₹19,999', m24: '₹22,999', popular: true }
+  ];
 
   const services = [
     {
@@ -32,11 +40,11 @@ export default function ServicesSection({ onOpenContact }) {
       tag: 'Ultra-Fast Symmetrical Speed',
       desc: 'Cutting-edge fiber optic technology delivering high-speed internet for seamless remote work, streaming, and business ops.',
       features: [
-        'Ultra-high speeds up to 1 Gbps (1000 Mbps)',
+        'Ultra-high speeds up to 100 Mbps - 1 Gbps',
         'Low latency & jitter-free for video calls & cloud apps',
         'Zero data throttling & truly unlimited data options',
-        'Dual-band Gigabit Wi-Fi 6 Router included',
-        'Rapid same-day technician installation in Ankleshwar'
+        'Dual-band Gigabit Wi-Fi Router available',
+        'Installation within 3 to 5 working days'
       ],
       idealFor: 'Residential complexes, retail stores, work-from-home pros'
     },
@@ -117,14 +125,116 @@ export default function ServicesSection({ onOpenContact }) {
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="badge-tag">
             <Server className="w-3.5 h-3.5 text-cyan-400" />
-            <span>Our Service Portfolio</span>
+            <span>Our Official Service Portfolio & Rates</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-            Explore Our Diverse <span className="gradient-text">Connectivity Solutions</span>
+            Explore Technosys <span className="gradient-text">Fiber Broadband & ILL Plans</span>
           </h2>
           <p className="text-slate-400 text-base">
-            From dedicated enterprise leased lines to high-speed home fiber and smart campus Wi-Fi, STPL delivers unmatched reliability across Gujarat.
+            Blazing fast internet at unbeatable prices. From long-term fiber broadband packages to dedicated 1:1 enterprise leased lines across Ankleshwar & Bharuch.
           </p>
+        </div>
+
+        {/* Official Fiber Broadband Plans Pricing Table (Transcribed from Rate Card Flyer) */}
+        <div className="glass-panel p-6 sm:p-8 border border-cyan-500/30 space-y-6">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-6 border-b border-zinc-800">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-semibold mb-2">
+                <Tag className="w-3.5 h-3.5" />
+                <span>Official Technosys Fiber Rate Card</span>
+              </div>
+              <h3 className="text-2xl font-bold text-white font-heading">Fiber Broadband Plans & Tenure Matrix</h3>
+            </div>
+            <button onClick={onOpenContact} className="btn-primary py-2.5 text-xs font-bold">
+              <span>Book Connection Now</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+
+          {/* Pricing Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-zinc-800 text-xs font-mono text-zinc-400 uppercase bg-zinc-950/60">
+                  <th className="py-4 px-4">Speed</th>
+                  <th className="py-4 px-4 text-cyan-400">12 Months</th>
+                  <th className="py-4 px-4 text-indigo-400">18 Months</th>
+                  <th className="py-4 px-4 text-purple-400">24 Months</th>
+                  <th className="py-4 px-4">Data & Benefits</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-zinc-800/80">
+                {broadbandRates.map((plan, idx) => (
+                  <tr key={idx} className="hover:bg-zinc-900/60 transition-colors">
+                    <td className="py-4 px-4 font-bold text-white font-mono text-base flex items-center gap-2">
+                      <span>{plan.speed}</span>
+                      {plan.popular && (
+                        <span className="text-[10px] bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 px-2 py-0.5 rounded font-sans">
+                          Popular
+                        </span>
+                      )}
+                    </td>
+                    <td className="py-4 px-4 font-mono font-bold text-cyan-300 text-base">{plan.m12}</td>
+                    <td className="py-4 px-4 font-mono font-bold text-indigo-300 text-base">{plan.m18}</td>
+                    <td className="py-4 px-4 font-mono font-bold text-purple-300 text-base">{plan.m24}</td>
+                    <td className="py-4 px-4 text-xs text-zinc-300 font-mono">
+                      <span className="text-emerald-400 font-semibold">Truly Unlimited Data</span> • 24/7 NOC Support
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Benefits & Terms Notes */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-zinc-800 text-xs text-zinc-300 font-mono">
+            
+            <div className="bg-zinc-900/80 p-4 rounded-xl border border-zinc-800 space-y-2">
+              <h4 className="font-bold text-white uppercase text-[11px] text-cyan-400">Benefits Of Technosys Fiber:</h4>
+              <ul className="space-y-1.5 text-zinc-300">
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>Unlimited Data Usage (No FUP Limit)</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>24/7 Dedicated Expert Customer Support</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400" />
+                  <span>High Quality Service & Buffer-Free Low Latency</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-purple-400" />
+                  <span>Reliable Network Fiber Infrastructure</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-zinc-900/80 p-4 rounded-xl border border-zinc-800 space-y-2">
+              <h4 className="font-bold text-white uppercase text-[11px] text-amber-400">Terms & Conditions:</h4>
+              <ul className="space-y-1 list-disc list-inside text-zinc-400 text-[11px]">
+                <li>All prices are exclusive of 18% GST.</li>
+                <li>Wi-Fi router available at extra charges (if required).</li>
+                <li>Price will vary based on fiber feasibility.</li>
+                <li>Installation within 3 to 5 working days from payment & documentation.</li>
+              </ul>
+            </div>
+
+          </div>
+
+          {/* Official Contact & Office Footer Bar */}
+          <div className="p-4 rounded-xl bg-zinc-950 border border-zinc-800 flex flex-wrap justify-between items-center gap-4 text-xs font-mono">
+            <div className="flex items-center gap-2 text-zinc-300">
+              <PhoneCall className="w-4 h-4 text-cyan-400" />
+              <span>Hotline: 95122 25277 / +91 70435 39045</span>
+            </div>
+            <div className="flex items-center gap-2 text-zinc-300">
+              <MapPin className="w-4 h-4 text-emerald-400" />
+              <span>315, Golden Square, Valia Rd, Ankleshwar, Dist - Bharuch</span>
+            </div>
+          </div>
+
         </div>
 
         {/* Featured Plans Comparison Grid (Broadband & Leased Line Detailed Cards) */}
