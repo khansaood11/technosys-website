@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Phone, Gauge, Menu, X, ArrowRight, MessageSquare, Sun, Moon, Briefcase, Cpu } from 'lucide-react';
+import { Phone, Gauge, Menu, X, ArrowRight, MessageSquare, Sun, Moon } from 'lucide-react';
 import TechnosysLogo from './TechnosysLogo';
 
 export default function Navbar({
@@ -9,9 +9,7 @@ export default function Navbar({
   onOpenSpeedTest,
   onOpenPolicy,
   theme,
-  toggleTheme,
-  viewMode,
-  setViewMode
+  toggleTheme
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -52,33 +50,6 @@ export default function Navbar({
             <span>Ankleshwar GIDC & Bharuch District Premier ISP</span>
           </div>
           <div className="flex items-center gap-6">
-            
-            {/* View Mode Toggle Pill (Executive View vs Technical View) */}
-            <div className="flex items-center gap-1 bg-slate-100 dark:bg-zinc-900 p-1 rounded-lg border border-slate-200 dark:border-zinc-800 font-sans">
-              <button
-                onClick={() => setViewMode('executive')}
-                className={`px-2.5 py-0.5 rounded text-[11px] font-bold flex items-center gap-1 transition-colors ${
-                  viewMode === 'executive'
-                    ? 'bg-sky-500 text-white dark:bg-cyan-500 dark:text-black'
-                    : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white'
-                }`}
-              >
-                <Briefcase className="w-3 h-3" />
-                <span>Executive View</span>
-              </button>
-              <button
-                onClick={() => setViewMode('technical')}
-                className={`px-2.5 py-0.5 rounded text-[11px] font-bold flex items-center gap-1 transition-colors ${
-                  viewMode === 'technical'
-                    ? 'bg-indigo-600 text-white dark:bg-purple-600 dark:text-white'
-                    : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white'
-                }`}
-              >
-                <Cpu className="w-3 h-3" />
-                <span>Technical NOC View</span>
-              </button>
-            </div>
-
             <a href="tel:+917043539045" className="flex items-center gap-1.5 hover:text-sky-600 dark:hover:text-cyan-400 transition-colors font-bold text-slate-900 dark:text-white">
               <Phone className="w-3.5 h-3.5 text-sky-600 dark:text-cyan-400" />
               <span>+91 70435 39045</span>
@@ -117,7 +88,7 @@ export default function Navbar({
           ))}
         </nav>
 
-        {/* Header Controls: Theme Switcher, Speed Test & Separately Designed Connect Now Button */}
+        {/* Header Controls: Light/Dark Theme Switcher, Speed Test & Connect Now CTA */}
         <div className="hidden md:flex items-center gap-3 shrink-0">
           
           {/* Light / Dark Mode Toggle Button */}
@@ -148,7 +119,7 @@ export default function Navbar({
             <span>Speed Test</span>
           </button>
 
-          {/* SEPARATELY DESIGNED "CONNECT NOW" GRADIENT CTA BUTTON */}
+          {/* CONNECT NOW GRADIENT CTA BUTTON */}
           <button
             onClick={() => setActiveTab('contact')}
             className={`relative p-[1.5px] rounded-xl transition-all duration-300 hover:scale-105 ${
@@ -168,9 +139,8 @@ export default function Navbar({
 
         </div>
 
-        {/* Mobile Hamburger Toggle */}
+        {/* Mobile Controls */}
         <div className="flex items-center gap-2 md:hidden">
-          {/* Mobile Theme Toggle Button */}
           <button
             onClick={toggleTheme}
             className="p-2 rounded-xl bg-slate-100 dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-slate-700 dark:text-amber-300"
@@ -188,7 +158,7 @@ export default function Navbar({
 
       </div>
 
-      {/* Full-Width Animated Mobile Drawer Side Slide Effect */}
+      {/* Full-Width Mobile Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -198,32 +168,6 @@ export default function Navbar({
             transition={{ duration: 0.25, ease: 'easeOut' }}
             className="md:hidden bg-white dark:bg-[#09090B] border-b border-slate-200 dark:border-zinc-800 px-6 py-6 flex flex-col gap-2.5 text-slate-900 dark:text-zinc-200 shadow-2xl w-full"
           >
-            {/* Mobile View Mode Switcher */}
-            <div className="flex items-center gap-1 bg-slate-100 dark:bg-zinc-900 p-1.5 rounded-xl border border-slate-200 dark:border-zinc-800 mb-2">
-              <button
-                onClick={() => setViewMode('executive')}
-                className={`flex-1 py-2 text-xs font-bold rounded-lg flex items-center justify-center gap-1.5 transition-colors ${
-                  viewMode === 'executive'
-                    ? 'bg-sky-500 text-white dark:bg-cyan-500 dark:text-black'
-                    : 'text-slate-600 dark:text-zinc-400'
-                }`}
-              >
-                <Briefcase className="w-3.5 h-3.5" />
-                <span>Executive View</span>
-              </button>
-              <button
-                onClick={() => setViewMode('technical')}
-                className={`flex-1 py-2 text-xs font-bold rounded-lg flex items-center justify-center gap-1.5 transition-colors ${
-                  viewMode === 'technical'
-                    ? 'bg-indigo-600 text-white dark:bg-purple-600 dark:text-white'
-                    : 'text-slate-600 dark:text-zinc-400'
-                }`}
-              >
-                <Cpu className="w-3.5 h-3.5" />
-                <span>Technical View</span>
-              </button>
-            </div>
-
             {navItems.map((item) => (
               <button
                 key={item.id}
@@ -238,7 +182,7 @@ export default function Navbar({
               </button>
             ))}
 
-            {/* SEPARATELY DESIGNED "CONNECT NOW" MOBILE CTA BUTTON */}
+            {/* CONNECT NOW MOBILE CTA */}
             <div className="pt-2">
               <button
                 onClick={() => { setActiveTab('contact'); setMobileMenuOpen(false); }}
