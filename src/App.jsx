@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import ExecutiveHero from './components/ExecutiveHero';
+import SimplePlanEstimator from './components/SimplePlanEstimator';
+import FAQ from './components/FAQ';
 import SpeedTestModal from './components/SpeedTestModal';
 import ServicesSection from './components/ServicesSection';
 import BandwidthCalc from './components/BandwidthCalc';
@@ -32,13 +35,36 @@ export default function App() {
   const [policyModalOpen, setPolicyModalOpen] = useState(false);
   const [activePolicyDoc, setActivePolicyDoc] = useState('Terms & Conditions');
 
+  // Light / Dark Theme State
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('technosys-theme') || 'dark';
+  });
+
+  // Executive (Simple & HR View) vs Technical NOC View Mode State
+  const [viewMode, setViewMode] = useState(() => {
+    return localStorage.getItem('technosys-view-mode') || 'executive';
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('technosys-theme', theme);
+  }, [theme]);
+
+  useEffect(() => {
+    localStorage.setItem('technosys-view-mode', viewMode);
+  }, [viewMode]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+  };
+
   const handleOpenPolicy = (docName) => {
     setActivePolicyDoc(docName || 'Terms & Conditions');
     setPolicyModalOpen(true);
   };
 
   return (
-    <div className="min-h-screen bg-[#060B18] text-[#FAFAFA] selection:bg-cyan-500 selection:text-black flex flex-col justify-between overflow-x-hidden relative">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#060B18] text-slate-900 dark:text-[#FAFAFA] selection:bg-cyan-500 selection:text-black flex flex-col justify-between overflow-x-hidden relative transition-colors duration-300">
       
       {/* 1. Initial Lottie-Style Network Preloader Animation */}
       <NetworkPreloader />
@@ -52,12 +78,16 @@ export default function App() {
       {/* 4. Global Animated Optical Fiber Cables & Pulsing Nodes Background */}
       <FiberOpticBackground />
 
-      {/* Navbar */}
+      {/* Navbar with Theme & View Mode Switcher */}
       <Navbar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         onOpenSpeedTest={() => setSpeedTestOpen(true)}
         onOpenPolicy={handleOpenPolicy}
+        theme={theme}
+        toggleTheme={toggleTheme}
+        viewMode={viewMode}
+        setViewMode={setViewMode}
       />
 
       {/* Main View Router */}
@@ -65,64 +95,97 @@ export default function App() {
         {activeTab === 'home' && (
           <div className="animate-fadeIn space-y-4">
             
-            {/* Hero Section with Aurora & Fiber Node Animations */}
-            <Hero
-              onOpenSpeedTest={() => setSpeedTestOpen(true)}
-              onOpenContact={() => setActiveTab('contact')}
-              onExploreServices={() => setActiveTab('services')}
-            />
+            {/* View Mode Router: Executive View vs Technical View */}
+            {viewMode === 'executive' ? (
+              <>
+                {/* Simplified & Catchy Executive Hero Section */}
+                <ExecutiveHero
+                  onOpenContact={() => setActiveTab('contact')}
+                  onExploreServices={() => setActiveTab('services')}
+                  onOpenSpeedTest={() => setSpeedTestOpen(true)}
+                />
 
-            {/* Live ISP Network Health Bar */}
-            <LiveNetworkStatus />
+                {/* Partner Hardware Marquee Carousel */}
+                <BrandMarquee />
 
-            {/* Partner Hardware Marquee Carousel */}
-            <BrandMarquee />
+                {/* Simplified Device-Based Plan Estimator */}
+                <SimplePlanEstimator onOpenContact={() => setActiveTab('contact')} />
 
-            {/* Verified Corporate & Industrial Clients Showcase */}
-            <CorporateClients />
+                {/* Verified Corporate & Industrial Clients Showcase */}
+                <CorporateClients />
 
-            {/* Vercel-Style Feature Grid */}
-            <div className="container py-8">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                
-                <button
-                  onClick={() => setActiveTab('services')}
-                  className="glass-panel glass-panel-interactive p-6 text-left space-y-3 border-zinc-800 group"
-                >
-                  <div className="text-xs font-mono font-semibold uppercase tracking-wider text-cyan-400">01 / Services</div>
-                  <h3 className="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">Leased Line & Fiber →</h3>
-                  <p className="text-xs text-zinc-400">1:1 Dedicated Symmetrical Bandwidth & High Speed FTTH Broadband</p>
-                </button>
+                {/* Core Services Section */}
+                <ServicesSection onOpenContact={() => setActiveTab('contact')} />
 
-                <button
-                  onClick={() => setActiveTab('plans')}
-                  className="glass-panel glass-panel-interactive p-6 text-left space-y-3 border-zinc-800 group"
-                >
-                  <div className="text-xs font-mono font-semibold uppercase tracking-wider text-purple-400">02 / Estimator</div>
-                  <h3 className="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">Bandwidth Calculator →</h3>
-                  <p className="text-xs text-zinc-400">Calculate exact internet speed requirements for home or enterprise</p>
-                </button>
+                {/* Why Choose Us Highlight */}
+                <WhyChooseUs onOpenContact={() => setActiveTab('contact')} />
 
-                <button
-                  onClick={() => setActiveTab('coverage')}
-                  className="glass-panel glass-panel-interactive p-6 text-left space-y-3 border-zinc-800 group"
-                >
-                  <div className="text-xs font-mono font-semibold uppercase tracking-wider text-emerald-400">03 / Feasibility</div>
-                  <h3 className="text-xl font-bold text-white group-hover:text-emerald-300 transition-colors">Ankleshwar GIDC Fiber →</h3>
-                  <p className="text-xs text-zinc-400">Instant serviceability & optical node lookup for Phase 1-4 & Bharuch</p>
-                </button>
+                {/* Customer Endorsements & Testimonials */}
+                <Testimonials />
 
-              </div>
-            </div>
+                {/* Frequently Asked Questions */}
+                <FAQ onOpenContact={() => setActiveTab('contact')} />
+              </>
+            ) : (
+              <>
+                {/* Full Technical Hero Section with Terminal Diagnostics */}
+                <Hero
+                  onOpenSpeedTest={() => setSpeedTestOpen(true)}
+                  onOpenContact={() => setActiveTab('contact')}
+                  onExploreServices={() => setActiveTab('services')}
+                />
 
-            {/* Physical Telecom Infrastructure Showcase */}
-            <InfrastructureShowcase onOpenContact={() => setActiveTab('contact')} />
+                {/* Live ISP Network Health Bar */}
+                <LiveNetworkStatus />
 
-            {/* Interactive Ankleshwar GIDC Coverage Map Topology Visualizer */}
-            <GIDCCoverageVisualizer onOpenContact={() => setActiveTab('contact')} />
+                {/* Partner Hardware Marquee Carousel */}
+                <BrandMarquee />
 
-            {/* 5-Step Animated Connection Process Timeline */}
-            <ProcessTimeline onOpenContact={() => setActiveTab('contact')} />
+                {/* Verified Corporate & Industrial Clients Showcase */}
+                <CorporateClients />
+
+                {/* Vercel-Style Feature Grid */}
+                <div className="container py-8">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <button
+                      onClick={() => setActiveTab('services')}
+                      className="glass-panel glass-panel-interactive p-6 text-left space-y-3 border-slate-200 dark:border-zinc-800 group"
+                    >
+                      <div className="text-xs font-mono font-semibold uppercase tracking-wider text-sky-600 dark:text-cyan-400">01 / Services</div>
+                      <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-cyan-300 transition-colors">Leased Line & Fiber →</h3>
+                      <p className="text-xs text-slate-600 dark:text-zinc-400">1:1 Dedicated Symmetrical Bandwidth & High Speed FTTH Broadband</p>
+                    </button>
+
+                    <button
+                      onClick={() => setActiveTab('plans')}
+                      className="glass-panel glass-panel-interactive p-6 text-left space-y-3 border-slate-200 dark:border-zinc-800 group"
+                    >
+                      <div className="text-xs font-mono font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400">02 / Estimator</div>
+                      <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors">Bandwidth Calculator →</h3>
+                      <p className="text-xs text-slate-600 dark:text-zinc-400">Calculate exact internet speed requirements for home or enterprise</p>
+                    </button>
+
+                    <button
+                      onClick={() => setActiveTab('coverage')}
+                      className="glass-panel glass-panel-interactive p-6 text-left space-y-3 border-slate-200 dark:border-zinc-800 group"
+                    >
+                      <div className="text-xs font-mono font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">03 / Feasibility</div>
+                      <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors">Ankleshwar GIDC Fiber →</h3>
+                      <p className="text-xs text-slate-600 dark:text-zinc-400">Instant serviceability & optical node lookup for Phase 1-4 & Bharuch</p>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Physical Telecom Infrastructure Showcase */}
+                <InfrastructureShowcase onOpenContact={() => setActiveTab('contact')} />
+
+                {/* Interactive Ankleshwar GIDC Coverage Map Topology Visualizer */}
+                <GIDCCoverageVisualizer onOpenContact={() => setActiveTab('contact')} />
+
+                {/* 5-Step Animated Connection Process Timeline */}
+                <ProcessTimeline onOpenContact={() => setActiveTab('contact')} />
+              </>
+            )}
 
           </div>
         )}
@@ -155,6 +218,7 @@ export default function App() {
           <div className="pt-24 animate-fadeIn space-y-12">
             <WhyChooseUs onOpenContact={() => setActiveTab('contact')} />
             <Testimonials />
+            <FAQ onOpenContact={() => setActiveTab('contact')} />
           </div>
         )}
 

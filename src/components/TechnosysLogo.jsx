@@ -37,10 +37,10 @@ export default function TechnosysLogo({ className = "", size = "normal" }) {
             <path d="M 54 56 L 72 56 L 66 84 L 48 84 Z" fill="url(#logoPurple)" />
           </svg>
           <div className="flex flex-col text-left leading-none">
-            <span className="font-heading font-extrabold text-2xl tracking-tight text-white group-hover:text-cyan-300 transition-colors">
+            <span className="font-heading font-extrabold text-2xl tracking-tight text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-cyan-300 transition-colors">
               Technosys
             </span>
-            <span className="text-xs font-semibold text-cyan-400 tracking-wide mt-1 font-['Caveat',cursive] italic">
+            <span className="text-xs font-semibold text-sky-600 dark:text-cyan-400 tracking-wide mt-1 font-['Caveat',cursive] italic">
               ... way to web
             </span>
           </div>
