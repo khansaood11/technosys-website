@@ -30,10 +30,8 @@ export default function App() {
   const [policyModalOpen, setPolicyModalOpen] = useState(false);
   const [activePolicyDoc, setActivePolicyDoc] = useState('Terms & Conditions');
 
-  // Light / Dark Theme State (Defaults to Light mode for clean business presentation, togglable to dark)
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('technosys-theme') || 'light';
-  });
+  // Crisp Light Theme State (100% Light by default)
+  const [theme, setTheme] = useState('light');
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -50,7 +48,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#060B18] text-slate-900 dark:text-[#FAFAFA] selection:bg-cyan-500 selection:text-black flex flex-col justify-between overflow-x-hidden relative transition-colors duration-300">
+    <div className="min-h-screen bg-[#F8FAFC] text-slate-900 selection:bg-blue-600 selection:text-white flex flex-col justify-between overflow-x-hidden relative transition-colors duration-300">
       
       {/* 1. Initial Network Preloader Animation */}
       <NetworkPreloader />
@@ -61,10 +59,10 @@ export default function App() {
       {/* 3. Mouse Spotlight Glow Following Cursor */}
       <MouseSpotlight />
 
-      {/* 4. Global Animated Optical Fiber Background */}
+      {/* 4. Global Animated Fiber Background */}
       <FiberOpticBackground />
 
-      {/* Clean Navbar */}
+      {/* Crisp Light Navbar */}
       <Navbar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -74,7 +72,7 @@ export default function App() {
         toggleTheme={toggleTheme}
       />
 
-      {/* Main Single Streamlined View */}
+      {/* Main Streamlined View */}
       <main className="flex-1 relative z-10">
         {activeTab === 'home' && (
           <div className="animate-fadeIn space-y-4">
